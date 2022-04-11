@@ -1,0 +1,28 @@
+.result-container{
+    width: 95%;
+    max-width: 750px;
+}
+.svg-wrapper{
+    display: block;
+    margin-left:auto;
+    margin-right: auto;
+    max-width: 100%;
+}
+  
+.svg-circle-bg {
+    fill:none;
+}
+  
+.svg-circle {
+    fill: none;
+}
+
+.svg-circle-text {
+    /* font-size: 2rem; */
+    text-anchor: middle;
+    fill: #fff;
+    font-weight: bold;
+}
+.chart-container  svg{
+    overflow: visible !important;
+}

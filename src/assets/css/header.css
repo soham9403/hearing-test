@@ -1,0 +1,45 @@
+.logo{
+    width: 220px;
+}
+.logo img{
+    width: 100%;
+    height: auto;
+}
+.bar-icon{
+    display: none;
+}
+header{
+    z-index: 11;
+}
+@media(max-width:820px){
+    .logo{
+        width: 150px;
+    }
+    .bar-icon{
+        display: flex;        
+        height: 40px;
+        width: 40px;
+    }
+    .nav-bar{
+        transition: all 0.2s linear;
+        overflow: hidden;
+        position: fixed;
+        top: 64px;
+        width: 100%;
+        z-index: 11;
+        left: 0px;
+        background-color: black;
+        flex-direction: column;
+    }
+    .nav-bar ul{
+        flex-direction: column;
+    }
+    .nav-bar ul li,.nav-bar ul li a{
+        width: 100%;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+
+    }
+    
+}
