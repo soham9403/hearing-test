@@ -16,3 +16,10 @@ export const setDevice = (deviceType) =>{
         value: deviceType
     }
 }
+
+export const setTestMode = (modeType) =>{
+    return {
+        type: "PERSONAL_INTREST_SET_TEST_MODE",
+        value: modeType
+    }
+}

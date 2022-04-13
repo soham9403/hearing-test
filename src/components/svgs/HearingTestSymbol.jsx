@@ -1,6 +1,13 @@
 
-
+import Hearingtestsymbolimg from '../../assets/images/oxlogo.png'
 const HearingTestSymbol = (props) => {
+    if(props.png){
+        return (
+            <div className="hearing_test_symbol">             
+                <img src={Hearingtestsymbolimg} className="row" alt="" />
+            </div>
+        )
+    }
     return (
         <div className="hearing_test_symbol">
             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="40" viewBox="0 0 494.349 48">

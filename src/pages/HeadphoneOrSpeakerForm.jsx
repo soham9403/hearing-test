@@ -29,11 +29,11 @@ const HeadphoneOrSpeakerForm = () => {
             </div>
             <div className="row m-v-primary df">
                 <p className="txt-gray sub-heading row center df font-metropolis-regular m-v-primary">
-                    Find a quiet environment for best results. Please set your volume level to 40-50% before beginning the test.
+                    Find a quiet environment for best results. Please set your volume level to 80-90% before beginning the test.
                 </p>
             </div>
             <div className="small_container m-v-secondary">
-                <Button variant="contained" disabled={personalIntrest.device_selected===""} onClick={() => { navigate(rootUrl + "/step/4") }} className="row p-primary m-v-primary" color="secondary" >Next</Button>
+                <Button variant="contained" disabled={personalIntrest.device_selected===""} onClick={() => { navigate(rootUrl + "/step/select-mode") }} className="row p-primary m-v-primary" color="secondary" >Next</Button>
             </div>
         </div>
     </>)

@@ -36,7 +36,8 @@ const initialstate = {
             value: false
         },
     ],
-    device_selected: ""
+    device_selected: "",
+    test_mode:'ear',
 
 }
 const personalIntrestReducer = (state = initialstate, action) => {
@@ -50,6 +51,7 @@ const personalIntrestReducer = (state = initialstate, action) => {
             list[action.index] = ele
             return { ...state, purpose_list: list };
         case "PERSONAL_INTREST_SET_DEVICE": return { ...state, device_selected: action.value };
+        case "PERSONAL_INTREST_SET_TEST_MODE": return { ...state, test_mode : action.value };
 
         default: return { ...state }
     }

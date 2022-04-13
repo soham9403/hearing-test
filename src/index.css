@@ -71,6 +71,7 @@
 }
 .device_selection_box:nth-child(even){
   margin-left: 20px;
+  margin-right: 20px;
 }
 .shadow-box-outer{
   height: 150px;

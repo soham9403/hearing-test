@@ -53,6 +53,49 @@ const Result = () => {
       />
     )
   }
+  const CustomBoneLEftDot = props => {
+    const { cx, cy } = props
+
+    return (
+      // <path
+      //   cx={cx - 10}
+      //   cy={cy - 10}
+      //   style={{
+      //     transform: 'translate(' + (cx - 10) + 'px,' + (cy - 10) + 'px)'
+      //   }}
+      //   xmlns='http://www.w3.org/2000/svg'
+      //   d='M20.5 2.5L18.75 0.75L10.5 9L2.25      0.5L18.75 20.75L20.5 19L12.25 10.75L20.5 2.5Z'
+      //   fill='#fff'
+      // />
+
+      <path
+        cx={cx - 10}
+        cy={cy - 10}
+        style={{
+          transform: 'translate(' + (cx - 10) + 'px,' + (cy - 11) + 'px)'
+        }}
+        xmlns='http://www.w3.org/2000/svg'
+        fill='#fff'
+        d='M 13.83 19 a 1 1 0 0 1 -0.78 -0.37 l -4.83 -6 a 1 1 0 0 1 0 -1.27 l 5 -6 a 1 1 0 0 1 1.54 1.28 L 10.29 12 l 4.32 5.36 a 1 1 0 0 1 -0.78 1.64 Z'
+      />
+    )
+  }
+  const CustomBoneRightDot = props => {
+    const { cx, cy } = props
+
+    return (
+      <path
+        cx={cx - 10}
+        cy={cy - 10}
+        style={{
+          transform: 'translate(' + (cx - 15) + 'px,' + (cy - 12) + 'px) '
+        }}
+        xmlns='http://www.w3.org/2000/svg'
+        fill='#fff'
+        d='M 15.54 11.29 L 9.88 5.64 a 1 1 0 0 0 -1.42 0 a 1 1 0 0 0 0 1.41 l 4.95 5 L 8.46 17 a 1 1 0 0 0 0 1.41 a 1 1 0 0 0 0.71 0.3 a 1 1 0 0 0 0.71 -0.3 l 5.66 -5.65 A 1 1 0 0 0 15.54 11.29 Z'
+      />
+    )
+  }
 
   const initialize = () => {
     let comparisonMatrix = [
@@ -214,8 +257,10 @@ const Result = () => {
 
     let leftAge = 0
     let rightAge = 0
-    const leftData = dataLeft
-    const rightData = dataRight
+    const leftData =
+      personalIntrest.test_mode == 'bone' ? dataBONELeft : dataLeft
+    const rightData =
+      personalIntrest.test_mode == 'bone' ? dataBONERight : dataRight
     var normalL = 0,
       moderateL = 0,
       severeL = 0
@@ -314,7 +359,21 @@ const Result = () => {
       F6L: earTestData.F6L,
       F6R: earTestData.F6R,
       F7L: earTestData.F7L,
-      F7R: earTestData.F7R
+      F7R: earTestData.F7R,
+      bone_F1L: earTestData.bone_F1L,
+      bone_F1R: earTestData.bone_F1R,
+      bone_F2L: earTestData.bone_F2L,
+      bone_F2R: earTestData.bone_F2R,
+      bone_F3L: earTestData.bone_F3L,
+      bone_F3R: earTestData.bone_F3R,
+      bone_F4L: earTestData.bone_F4L,
+      bone_F4R: earTestData.bone_F4R,
+      bone_F5L: earTestData.bone_F5L,
+      bone_F5R: earTestData.bone_F5R,
+      bone_F6L: earTestData.bone_F6L,
+      bone_F6R: earTestData.bone_F6R,
+      bone_F7L: earTestData.bone_F7L,
+      bone_F7R: earTestData.bone_F7R
     }
 
     return await axios({
@@ -325,7 +384,15 @@ const Result = () => {
       data: data
     })
   }
-
+  const getAverage = (data)=>{
+    let count = 0;
+    let sum = 0;
+    for(let row of data){
+      sum = sum + parseFloat(row.uv)
+      count++;
+    }
+    return (sum/count)
+  }
   const LeftRightComponent = props => {
     return (
       <>
@@ -369,24 +436,79 @@ const Result = () => {
                       stroke='#FFFFFF'
                     />
 
-                    <Area
-                      type={'linear'}
-                      dataKey='uv'
-                      isAnimationActive={false}
-                      stroke='white'
-                      fillOpacity={0.8}
-                      fill='url(#colorUv)'
-                      strokeOpacity={1}
-                      dot={props.isLeft ? <CustomDot /> : { r: 5 }}
-                    />
+                    {(personalIntrest.test_mode == 'ear' ||
+                      personalIntrest.test_mode == 'both') && (
+                      <Area
+                        type={'linear'}
+                        dataKey='uv'
+                        isAnimationActive={false}
+                        stroke='white'
+                        fillOpacity={0.8}
+                        fill='url(#colorUv)'
+                        strokeOpacity={1}
+                        dot={props.isLeft ? <CustomDot /> : { r: 5 }}
+                      />
+                    )}
+                    {(personalIntrest.test_mode == 'bone' ||
+                      personalIntrest.test_mode == 'both') && (
+                      <Area
+                        type={'linear'}
+                        dataKey='bone_uv'
+                        isAnimationActive={false}
+                        stroke='white'
+                        fillOpacity={0.8}
+                        fill='url(#colorUv)'
+                        strokeOpacity={1}
+                        dot={
+                          props.isLeft ? (
+                            <CustomBoneLEftDot />
+                          ) : (
+                            <CustomBoneRightDot />
+                          )
+                        }
+                      />
+                    )}
                   </AreaChart>
                 </ResponsiveContainer>
               }
             </div>
           </Grid>
           <Grid item xs={12} md={6}>
-            <div className='df center fit-content p-primary'>
+            <div className='df center fit-content column p-primary'>
               {getGraphText(props.isLeft ? states.stateL : states.stateR)}
+              <ul
+                style={{ justifyContent: 'flex-start' }}
+                className='df  row p-primary '
+              >
+                {(personalIntrest.test_mode == 'bone' ||
+                  personalIntrest.test_mode == 'both') && (
+                  <div className='flex-1 df column'>
+                    <h3
+                      className=' row df center titles font-metropolis-bold txt-primary p-v-primary'
+                      style={{}}
+                    >
+                      Bone Average
+                    </h3>
+                    <span className='description  row p-v-primary font-metropolis-regular txt-primary'>
+                      {getAverage(props.isLeft?dataBONELeft:dataBONERight)}
+                    </span>
+                  </div>
+                )}
+                {(personalIntrest.test_mode == 'ear' ||
+                  personalIntrest.test_mode == 'both') && (
+                  <div className='flex-1 df column'>
+                    <h3
+                      className=' row df center titles font-metropolis-bold txt-primary p-v-primary'
+                      style={{}}
+                    >
+                      Ear Average
+                    </h3>
+                    <span className='description  row p-v-primary font-metropolis-regular txt-primary'>
+                      {getAverage(props.isLeft?dataLeft :dataRight)}
+                    </span>
+                  </div>
+                )}
+              </ul>
             </div>
           </Grid>
           {/* <h1 style={{height:"10px",widht:"10px",background:"red"}} ref={ref}></h1> */}
@@ -401,62 +523,138 @@ const Result = () => {
   const dataLeft = [
     {
       name: '250',
-      uv: earTestData.F1L
+      uv: earTestData.F1L,
+      bone_uv: earTestData.bone_F1L
     },
     {
       name: '500',
-      uv: earTestData.F2L
+      uv: earTestData.F2L,
+      bone_uv: earTestData.bone_F2L
     },
     {
       name: '1K',
-      uv: earTestData.F3L
+      uv: earTestData.F3L,
+      bone_uv: earTestData.bone_F3L
     },
     {
       name: '2K',
-      uv: earTestData.F4L
+      uv: earTestData.F4L,
+      bone_uv: earTestData.bone_F4L
     },
     {
       name: '3K',
-      uv: earTestData.F5L
+      uv: earTestData.F5L,
+      bone_uv: earTestData.bone_F5L
     },
     {
       name: '5K',
-      uv: earTestData.F6L
+      uv: earTestData.F6L,
+      bone_uv: earTestData.bone_F6L
     },
     {
       name: '8K',
-      uv: earTestData.F7L
+      uv: earTestData.F7L,
+      bone_uv: earTestData.bone_F7L
     }
   ]
 
   const dataRight = [
     {
       name: '250',
-      uv: earTestData.F1R
+      uv: earTestData.F1R,
+      bone_uv: earTestData.bone_F1R
     },
     {
       name: '500',
-      uv: earTestData.F2R
+      uv: earTestData.F2R,
+      bone_uv: earTestData.bone_F2R
     },
     {
       name: '1K',
-      uv: earTestData.F3R
+      uv: earTestData.F3R,
+      bone_uv: earTestData.bone_F3R
     },
     {
       name: '2K',
-      uv: earTestData.F4R
+      uv: earTestData.F4R,
+      bone_uv: earTestData.bone_F4R
     },
     {
       name: '3K',
-      uv: earTestData.F5R
+      uv: earTestData.F5R,
+      bone_uv: earTestData.bone_F5R
     },
     {
       name: '5K',
-      uv: earTestData.F6R
+      uv: earTestData.F6R,
+      bone_uv: earTestData.bone_F6R
     },
     {
       name: '8K',
-      uv: earTestData.F7R
+      uv: earTestData.F7R,
+      bone_uv: earTestData.bone_F7R
+    }
+  ]
+
+  const dataBONELeft = [
+    {
+      name: '250',
+      uv: earTestData.bone_F1L
+    },
+    {
+      name: '500',
+      uv: earTestData.bone_F2L
+    },
+    {
+      name: '1K',
+      uv: earTestData.bone_F3L
+    },
+    {
+      name: '2K',
+      uv: earTestData.bone_F4L
+    },
+    {
+      name: '3K',
+      uv: earTestData.bone_F5L
+    },
+    {
+      name: '5K',
+      uv: earTestData.bone_F6L
+    },
+    {
+      name: '8K',
+      uv: earTestData.bone_F7L
+    }
+  ]
+
+  const dataBONERight = [
+    {
+      name: '250',
+      uv: earTestData.bone_F1R
+    },
+    {
+      name: '500',
+      uv: earTestData.bone_F2R
+    },
+    {
+      name: '1K',
+      uv: earTestData.bone_F3R
+    },
+    {
+      name: '2K',
+      uv: earTestData.bone_F4R
+    },
+    {
+      name: '3K',
+      uv: earTestData.bone_F5R
+    },
+    {
+      name: '5K',
+      uv: earTestData.bone_F6R
+    },
+    {
+      name: '8K',
+      uv: earTestData.bone_F7R
     }
   ]
   return (
