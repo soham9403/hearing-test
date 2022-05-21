@@ -113,7 +113,7 @@ const Index = () => {
                     </div>
 
                     <div className='m-v-secondary'>
-                        <NeonButton title={"TAKE THE TEST !"} onClick={() => { navigate(link + "/step/1") }} />
+                        <NeonButton title={"TAKE THE TEST !"} onClick={() => { navigate( "/step/1") }} />
                     </div>
 
                 </div>

@@ -1,7 +1,7 @@
 const initialState = {
-    name: "sohammmmmm",
-    email: "testing",
-    age: "18",
+    name: "",
+    email: "",
+    age: "",
     gender: "Male"
 }
 const personaldetailsReducer = (state = initialState, action) => {

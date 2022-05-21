@@ -17,7 +17,7 @@ import PersonalIntrestForm from "../pages/PersonalIntrestForm";
 import Result from "../pages/Result";
 import StepViewer from "../pages/StepViewer";
 import TestMode from "../pages/TestMode";
-export const rootUrl = '/hearing-test'
+export const rootUrl = ''
 const RouteIndex = () => {
 
     return (
