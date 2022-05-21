@@ -137,6 +137,10 @@
     width: calc(var(--basefont) * 1.25);
     height: calc(var(--basefont) * 1.25);
 }
+.notation-svg{
+    width: calc(var(--basefont) * 0.5);
+    height: calc(var(--basefont) * 0.5);
+}
 .horizontal-border-box {
     height: calc(calc(var(--basefont) * 2.5) );
     border-width: calc(var(--basefont) * 10.41) !important;

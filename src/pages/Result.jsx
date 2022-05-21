@@ -387,7 +387,8 @@ const Result = (props) => {
 
     return await axios({
       url:
-        'https://lychee-crisp-08059.herokuapp.com/' +
+        // 'https://lychee-crisp-08059.herokuapp.com/' +
+        'http://localhost:8000/'+
         'api/hearing-test/add-row',
       method: 'post',
       data: data
@@ -407,11 +408,38 @@ const Result = (props) => {
       <>
         <div className='df column row'>
 
+          <div className='df flex-end row-center pt-2 '>
+            <div className='df row-center pl-3 pr-3 pt-4 pb-4 mr-2 border-2-primary radius-2'>
+              <span className='h7 font-intern df mr-3 '>{props.isLeft ? 'Air Left' : "Air Right"}</span>
 
+              {props.isLeft ? <svg xmlns="http://www.w3.org/2000/svg" className='notation-svg' viewBox="0 0 10 10" fill="none">
+                <path d="M7.90502 0.357932L5.00002 3.26309C4.03174 2.29512 3.06315 1.32621 2.09471 0.357932C0.974395 -0.76238 -0.762168 0.974807 0.357208 2.09543C1.3258 3.06309 2.29471 4.03215 3.26221 5.00043C2.29427 5.96916 1.32593 6.93749 0.357208 7.90543C-0.762168 9.02543 0.974552 10.7622 2.09471 9.64293C3.06299 8.67434 4.03158 7.70559 4.99986 6.73762L7.90487 9.64293C9.02518 10.7629 10.7622 9.02559 9.64237 7.90543C8.67377 6.93684 7.70549 5.96856 6.73658 5.00012C7.70533 4.03153 8.67362 3.06293 9.64237 2.09449C10.7624 0.974807 9.02533 -0.76238 7.90487 0.358557" fill="#A91674" />
+              </svg>
+                :
+                <svg xmlns="http://www.w3.org/2000/svg" className='notation-svg' viewBox="0 0 9 9" fill="none">
+                  <path d="M4.69901 8.76546C3.61918 8.76546 2.58356 8.33657 1.81991 7.5731C1.05625 6.80964 0.627101 5.77413 0.626831 4.6943C0.626561 3.61446 1.05519 2.57873 1.81847 1.81489C2.58174 1.05104 3.61714 0.621634 4.69698 0.621094C5.77681 0.620554 6.81265 1.04893 7.57668 1.81201C8.34072 2.57509 8.77039 3.61039 8.7712 4.69022C8.77201 5.77006 8.34389 6.806 7.581 7.57023C6.81811 8.33445 5.78292 8.76438 4.70309 8.76546H4.69901Z" fill="#E6234A" />
+                </svg>
+              }    </div>
+
+
+            <div className='df row-center pt-4 pb-4 pl-3 pr-3 mr-1 border-2-primary radius-2'>
+              <span className='h7 font-intern df mr-3 '>{props.isLeft ? 'Bone Left' : "Bone Right"}</span>
+              <svg className='notation-svg'>
+                {/* <CustomDot isCircle={!props.isLeft} cx={12} cy={12} /> */}
+                {props.isLeft ? <svg xmlns="http://www.w3.org/2000/svg" className='notation-svg' viewBox="0 0 12 20" fill="none">
+                  <path d="M11.0608 19.5462C11.342 19.2649 11.5 18.8834 11.5 18.4857C11.5 18.0879 11.342 17.7065 11.0608 17.4252L3.63582 10.0002L11.0608 2.57517C11.3341 2.29227 11.4853 1.91336 11.4818 1.52007C11.4784 1.12677 11.3207 0.750555 11.0425 0.472443C10.7644 0.19433 10.3882 0.0365791 9.99492 0.0331611C9.60163 0.0297431 9.22273 0.180935 8.93982 0.454172L0.454321 8.93967C0.173114 9.22096 0.015141 9.60243 0.015141 10.0002C0.015141 10.3979 0.173114 10.7794 0.454321 11.0607L8.93982 19.5462C9.22111 19.8274 9.60257 19.9854 10.0003 19.9854C10.3981 19.9854 10.7795 19.8274 11.0608 19.5462Z" fill="#A91674" />
+                </svg> :
+                  <svg className='notation-svg' viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.93918 19.5462C0.657973 19.2649 0.5 18.8834 0.5 18.4857C0.5 18.0879 0.657973 17.7065 0.93918 17.4252L8.36418 10.0002L0.939179 2.57517C0.665942 2.29227 0.51475 1.91336 0.518167 1.52007C0.521585 1.12677 0.679339 0.750555 0.957451 0.472443C1.23556 0.19433 1.61178 0.0365791 2.00508 0.0331611C2.39837 0.0297431 2.77727 0.180935 3.06018 0.454172L11.5457 8.93967C11.8269 9.22096 11.9849 9.60243 11.9849 10.0002C11.9849 10.3979 11.8269 10.7794 11.5457 11.0607L3.06018 19.5462C2.77889 19.8274 2.39743 19.9854 1.99968 19.9854C1.60193 19.9854 1.22047 19.8274 0.93918 19.5462Z" fill="#A91674" />
+                  </svg>}
+              </svg>
+            </div>
+
+          </div>
 
           <div
             className='df chart-area center fit-content chart-container p-primary'
-            style={{ minHeight: '500px', paddingRight: '2.083vw' }}
+            style={{ minHeight: '500px', marginTop: "-5%", paddingRight: '2.083vw' }}
           >
             {
               <ResponsiveContainer width='100%' height='85%' className='row'>
@@ -659,7 +687,7 @@ const Result = (props) => {
                   <path d="M18.75 3.75H16.5V3C16.5 2.60218 16.342 2.22064 16.0607 1.93934C15.7794 1.65804 15.3978 1.5 15 1.5H9C8.60218 1.5 8.22064 1.65804 7.93934 1.93934C7.65804 2.22064 7.5 2.60218 7.5 3V3.75H5.25C4.85218 3.75 4.47064 3.90804 4.18934 4.18934C3.90804 4.47064 3.75 4.85218 3.75 5.25V21C3.75 21.3978 3.90804 21.7794 4.18934 22.0607C4.47064 22.342 4.85218 22.5 5.25 22.5H18.75C19.1478 22.5 19.5294 22.342 19.8107 22.0607C20.092 21.7794 20.25 21.3978 20.25 21V5.25C20.25 4.85218 20.092 4.47064 19.8107 4.18934C19.5294 3.90804 19.1478 3.75 18.75 3.75V3.75ZM9 3H15V6H9V3ZM18.75 21H5.25V5.25H7.5V7.5H16.5V5.25H18.75V21Z" fill="#FEFEFE" />
                   <path d="M9.03125 17.7812H14.6562M9.34375 13.7188L11.8438 15.9062M11.8438 15.9062L14.3438 13.7188M11.8438 15.9062V10.5938" stroke="#FEFEFE" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                &nbsp; &nbsp;{props.loading?"Loading..." : 'Download Report'}
+                &nbsp; &nbsp;{props.loading ? "Loading..." : 'Download Report'}
               </button>
             </div>
           </div>
@@ -726,13 +754,13 @@ const Result = (props) => {
                   <span className='h6 font-intern text-2-primary'>{getAverage(dataBONELeft).toFixed(2)}</span>
                 </div>
               </div>
-              <div className='df flex-1 center  ml-2 mr-2 '>
+              <div className='df flex-1 center  ml-2 '>
                 <div className='circle-avg-box df center border-2-primary column '>
                   <h3 className='h5 font-intern text-2-primary'>AVG</h3>
                   <span className='h6 font-intern text-2-primary'>{((getAverage(dataBONELeft) + getAverage(dataBONERight)) / 2).toFixed(2)}</span>
                 </div>
               </div>
-              <div className='df flex-1 center  '>
+              <div className='df flex-1 center  ml-2'>
                 <div className='circle-avg-box df center border-2-primary column '>
                   <h3 className='h5 font-intern text-2-primary'>RIGHT EAR</h3>
                   <span className='h6 font-intern text-2-primary'>{getAverage(dataBONERight).toFixed(2)}</span>
@@ -756,7 +784,7 @@ const Result = (props) => {
                   <span className='h6 font-intern text-2-primary'>{getAverage(dataLeft).toFixed(2)}</span>
                 </div>
               </div>
-              <div className='df flex-1 center  ml-2 mr-2 '>
+              <div className='df flex-1 center    '>
                 <div className='circle-avg-box df center border-2-primary column '>
                   <h3 className='h5 font-intern text-2-primary'>AVG</h3>
                   <span className='h6 font-intern text-2-primary'>{((getAverage(dataLeft) + getAverage(dataRight)) / 2).toFixed(2)}</span>
@@ -777,7 +805,7 @@ const Result = (props) => {
               size={window.innerWidth > 450 ? window.innerWidth * 0.139 : window.innerWidth * 0.35}
               progress={Math.round((earTestData.snr * 100) / 12)}
               //earTestData.snr
-              strokeWidth={window.innerWidth > 450 ?window.innerWidth * 0.007:window.innerWidth * 0.014}
+              strokeWidth={window.innerWidth > 450 ? window.innerWidth * 0.007 : window.innerWidth * 0.014}
               circleOneStroke='#F4F4F4'
               circleTwoStroke='#09AD18'
               text='SNR'
@@ -788,7 +816,7 @@ const Result = (props) => {
           </div>
           <div className='df flex-2 column'>
             <h1 className='borderd-text mb-3 pb-3 df row text-2-primary h2 bold-1 font-intern'>What is SNR ?</h1>
-            <p className='text-2-dark h7 bold-3 font-intern'>SNR stands for Signal to noise ratio, which shows how well your ears are listening to useful sounds from different level of noises. SNR number ranges from 0 to 100, higher number shows that your ears are better in separating useful sounds from surrounding or White noises. Any number more than 75% shows best response of ears. Number between 50 to 75% shows that your ears needs attention and should minimise usage of earphones. Any number below 50 suggests you need to consult with audiologist and take care of your ears.</p>
+            <p className='text-2-dark h7 bold-3 font-intern' style={{ textAlign: "justify" }}>SNR stands for Signal to noise ratio, which shows how well your ears are listening to useful sounds from different level of noises. SNR number ranges from 0 to 100, higher number shows that your ears are better in separating useful sounds from surrounding or White noises. Any number more than 75% shows best response of ears. Number between 50 to 75% shows that your ears needs attention and should minimise usage of earphones. Any number below 50 suggests you need to consult with audiologist and take care of your ears.</p>
 
           </div>
         </div>
@@ -799,8 +827,8 @@ const Result = (props) => {
               <Hexagon
                 value={phi}
                 text='PHI'
-                height={window.innerWidth > 450 ? window.innerWidth * 0.17: window.innerWidth * 0.42}
-                width={window.innerWidth > 450 ? window.innerWidth * 0.17: window.innerWidth * 0.42}
+                height={window.innerWidth > 450 ? window.innerWidth * 0.17 : window.innerWidth * 0.42}
+                width={window.innerWidth > 450 ? window.innerWidth * 0.17 : window.innerWidth * 0.42}
               ></Hexagon>
 
               <div className='df column center fit-content p-absolute'>
@@ -811,9 +839,9 @@ const Result = (props) => {
 
           </div>
           <div className='df flex-2 column'>
-            <h1 className='borderd-text mb-3 pb-3 df row text-2-primary h2 bold-1 font-intern'>What is PHI ?
+            <h1 className='borderd-text mb-3 pb-3 df row text-2-primary h2 bold-1 font-intern' >What is PHI ?
             </h1>
-            <p className='text-2-dark h7 bold-3 font-intern'>PHI (Personal Hearing Intelligence) is the smart state of the art algorithm that monitors your hearing patterns and gives you very useful insights for your hearing care. This algorithm calculates estimated hearing loss age and your current ear age based on your hearing patterns and also gives you personalized hearing care tips and suggestions and provides complete hearing care package powered by machine learning algorithms.</p>
+            <p className='text-2-dark h7 bold-3 font-intern' style={{ textAlign: "justify" }}>PHI (Personal Hearing Intelligence) is the smart state of the art algorithm that monitors your hearing patterns and gives you very useful insights for your hearing care. This algorithm calculates estimated hearing loss age and your current ear age based on your hearing patterns and also gives you personalized hearing care tips and suggestions and provides complete hearing care package powered by machine learning algorithms.</p>
             <div className='df '>
               <a href='https://www.wehear.in/phi/' target={"_blank"} style={{ flex: "none" }} className='df center font-intern mt-2 pl-1 pr-1 pb-4 pt-4 bg-gradient text-2-light radius-1 h5'>
                 know more

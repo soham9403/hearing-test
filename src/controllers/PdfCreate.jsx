@@ -4,8 +4,11 @@ import jsPDF from "jspdf";
 import PrintResult from "../pages/PrintResult";
 import Result from "../pages/Result"
 import {useState} from 'react'
+import {useSelector} from 'react-redux'
 const PdfCreate = () => {
     const [loading,setLoading] = useState(false)
+
+    const {personalDetails} = useSelector((state)=>state)
     const printDocument = async() => {
         setLoading(true)
         const input = document.getElementById('pdfCreate');
@@ -35,7 +38,7 @@ const PdfCreate = () => {
                 // console.log
                 // pdf.addImage(imgData, 'JPEG', 0, 0);
                 // doc.output('pdfjsnewwindow');
-                doc.save("download.pdf");
+                doc.save(personalDetails.name+".pdf");
                 setLoading(false)
             }).catch((err)=>{
                 alert(err.message)

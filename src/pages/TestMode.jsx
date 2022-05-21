@@ -47,7 +47,7 @@ const TestMode = () => {
 
     return (
         <>
-            <h1 className="h2 font-intern mt-1 mb-1 container">SELECT MODE OF TESTING </h1>
+            <h1 className="h2 font-intern mt-1 mb-1 container center" >SELECT MODE OF TESTING </h1>
             <div className=" df  column container" >
                 <div className="row center df">
                     {/* <button onClick={() => { dispatch(setDevice("headphone")) }} className={personalIntrest.device_selected === "headphone" ? "device_selection_box  center p-3 device_selection_box_active primary-shadow border-2-primary border-2-primary-thin column radius-1 df" : "device_selection_box primary-shadow border-2-primary border-2-primary-thin center  column p-3 radius-1 df"}> */}

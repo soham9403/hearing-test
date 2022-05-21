@@ -2,6 +2,7 @@
 import { Button, CircularProgress, Grid } from '@mui/material'
 import { useSelector } from 'react-redux'
 import '../assets/css/result.css'
+import Logo from '../assets/images/v2/logo.png'
 import HearingTestSymbol from '../components/svgs/HearingTestSymbol'
 import ResultTabBox from './ResultTabBox'
 import {
@@ -328,7 +329,7 @@ const PrintResult = (props) => {
     } else if (severeR > normalR && severeR > moderateR) {
       stateR = 3
     }
-    sendReqToaddRow()
+    // sendReqToaddRow()
     setStates({ stateL: stateL, stateR: stateR })
     setPhi(phitotal)
   }
@@ -654,6 +655,10 @@ const PrintResult = (props) => {
                 <span className='text-2-primary font-intern h5 df flex-1 bold-1'>Test&nbsp;Mode&nbsp;:&nbsp; </span><span className='text-2-primary font-intern h5 df flex-2 bold-2'>{personalIntrest.device_selected.toUpperCase()}</span>
               </div>
             </div>
+
+            <div className="flex-1  df column row-center">
+              <img src={Logo} className='row' style={{width:"150px"}} alt="" />
+            </div>
             
           </div>
         </div>
@@ -776,7 +781,7 @@ const PrintResult = (props) => {
           </div>
           <div className='df flex-2 column'>
             <h1 className='borderd-text mb-3 pb-3 df row text-2-primary h2 bold-1 font-intern'>What is SNR ?</h1>
-            <p className='text-2-dark h7 bold-3 font-intern'>SNR stands for Signal to noise ratio, which shows how well your ears are listening to useful sounds from different level of noises. SNR number ranges from 0 to 100, higher number shows that your ears are better in separating useful sounds from surrounding or White noises. Any number more than 75% shows best response of ears. Number between 50 to 75% shows that your ears needs attention and should minimise usage of earphones. Any number below 50 suggests you need to consult with audiologist and take care of your ears.</p>
+            <p className='text-2-dark h7 bold-3 font-intern' style={{textAlign:"justify"}}>SNR stands for Signal to noise ratio, which shows how well your ears are listening to useful sounds from different level of noises. SNR number ranges from 0 to 100, higher number shows that your ears are better in separating useful sounds from surrounding or White noises. Any number more than 75% shows best response of ears. Number between 50 to 75% shows that your ears needs attention and should minimise usage of earphones. Any number below 50 suggests you need to consult with audiologist and take care of your ears.</p>
 
           </div>
         </div>
