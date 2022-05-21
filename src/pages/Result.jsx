@@ -388,7 +388,8 @@ const Result = (props) => {
     return await axios({
       url:
         // 'https://lychee-crisp-08059.herokuapp.com/' +
-        'http://localhost:8000/'+
+        // 'http://localhost:8000/'+
+        "https://crm-admin-wehear.herokuapp.com/" +
         'api/hearing-test/add-row',
       method: 'post',
       data: data
