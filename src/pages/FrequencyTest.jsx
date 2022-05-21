@@ -9,21 +9,24 @@ import Speaker from "../components/svgs/Speaker"
 const FrequencyTest = (props) => {
     return (<>
         <div className="df column small_container row-center">
-            <div className="df center shadow-box-outer m-v-secondary ">
-                <div className="shadow-box-inner df center column">
-                    {props.panMode === 0 && <Speaker width={"60%"} height={"60%"} />}
-                    {props.panMode === 1 && <HeadphoneRight width={"50%"} height={"60%"} />}
-                    {props.panMode === -1 && <HeadPhoneLeft width={"50%"} height={"60%"} />}
-                    <h1 className="titles row center df font-metropolis-bold">{props.getFrequencyName(props.frequncyList[props.level - 1])}</h1>
+            <div className="df center radius-0 primary-shadow pl-1 pr-1 pt-2 pb-2 df column shadow mt-1 mb-3">
+
+                {props.panMode === 0 && <Speaker width={"80%"} height={"60%"} />}
+                {props.panMode === 1 && <HeadphoneRight />}
+                {props.panMode === -1 && <HeadPhoneLeft />}
+                <div className=" df row mt-3 center" style={{ alignItems: "flex-end" }}>
+                    <span className="df  font-intern body-3 bold-1 text-2-secondary line-100" >{props.getFrequencyName(props.frequncyList[props.level - 1])}</span>
+                    <span className="font-intern h4 bold-1 text-2-secondary" style={{ lineHeight: "150%" }}>&nbsp;HZ</span>
                 </div>
+
             </div>
-            <span className="m-v-secondary heading row center font-metropolis-regular df">{props.dbValue + 100}DB</span>
+            <span className="df row font-intern body-2 center mt-1 text-2-primary line-100 mb-2">{props.dbValue + 100}DB</span>
             <ProgreeBar value={(props.level * 100) / props.totalFrquenctTest} />
             {!props.playState ? <div className="df row center m-v-primary">
-                <button className="df p-primary" onClick={() => { props.canHear() }}>
+                <button className="df radius-0 p-2 center mr-1 decision-box bg-2-success" onClick={() => { props.canHear() }}>
                     <HeardIt width={96} height={133} />
                 </button>
-                <button className="df p-primary" onClick={() => { props.cantHear() }}>
+                <button className="df radius-0 p-2 center decision-box bg-2-secondary" onClick={() => { props.cantHear() }}>
                     <CantHeardIt width={96} height={133} />
                 </button>
 

@@ -13,7 +13,7 @@ const TestingMainController = () => {
         const pathArr = location.pathname.split("/")
         const stepNo = pathArr[pathArr.length - 1]
         if (stepNo !== 1) {
-            navigate(rootUrl + "/step/1")
+            // navigate(rootUrl + "/step/1")
         }
         
 
@@ -38,10 +38,8 @@ const TestingMainController = () => {
         )
     } else {
         return (
-            <div className="df column row">
-                <div className="row m-v-primary">
-                    <HearingTestSymbol />
-                </div>
+            <div className="df column row flex-1 row-center">
+                
 
                 <Outlet />
             </div>

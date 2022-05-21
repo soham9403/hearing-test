@@ -1,6 +1,6 @@
 const initialstate = {
-    hours_of_use: ["0-1 hrs", "1-2 hrs", "2-3 hrs", , "3-4 hrs", , "4-5 hrs", , "5+ hrs"],
-    selected_hours_of_use: -1,
+    hours_of_use: ["0-1 hrs", "1-2 hrs", "2-3 hrs" , "3-4 hrs" , "4-5 hrs" , "5+ hrs"],
+    selected_hours_of_use: '0-1 hrs',
     purpose_list: [
         {
             label: "Work from home",
@@ -28,7 +28,7 @@ const initialstate = {
             value: false
         },
         {
-            label: "Youtube & Social Media",
+            label: " Social Media",
             value: false
         },
         {

@@ -172,11 +172,19 @@ const FrequencyTestController = props => {
   } else {
     return (
       <>
-        <div className='df row center'>
+        {/* <div className='df row center'>
           <div
             style={{ padding: '10px', background: '#F63649', color: 'white' }}
           >
             Mode: {mode.toUpperCase()}
+          </div>
+        </div> */}
+        <div className='df p-absolute row center'>
+          <div
+          className='h6 font-intern p-3 bg-2-primary text-2-light'
+            style={{ position:"fixed",top:"0px",right:"0px" }}
+          >
+            Mode: {mode=='ear'?"Air":mode.toUpperCase()}
           </div>
         </div>
         <FrequencyTest
@@ -189,6 +197,7 @@ const FrequencyTestController = props => {
           playState={playState}
           cantHear={cantHear}
           canHear={canHear}
+          mode={mode}
         />
       </>
     )

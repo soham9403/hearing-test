@@ -78,7 +78,7 @@ const KeyPadTestController = () => {
     }
     const finsihTest = () => {
         dispatch(setSnr(logicCounts.level))
-        navigate(rootUrl + "/result")
+        navigate(rootUrl + "/step/result")
     }
 
     const checkTest = () => {

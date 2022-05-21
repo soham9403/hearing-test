@@ -20,7 +20,7 @@
 .svg-circle-text {
     /* font-size: 2rem; */
     text-anchor: middle;
-    fill: #fff;
+    
     font-weight: bold;
 }
 .chart-container  svg{

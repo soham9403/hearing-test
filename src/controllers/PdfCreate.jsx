@@ -1,13 +1,15 @@
-import { Button } from "@mui/material";
+
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import PrintResult from "../pages/PrintResult";
 import Result from "../pages/Result"
-
+import {useState} from 'react'
 const PdfCreate = () => {
-    const printDocument = () => {
+    const [loading,setLoading] = useState(false)
+    const printDocument = async() => {
+        setLoading(true)
         const input = document.getElementById('pdfCreate');
-        html2canvas(input)
+        return await html2canvas(input)
             .then((canvas) => {
                 // canvas.style = 
                 const imgData = canvas.toDataURL('image/png');
@@ -34,16 +36,21 @@ const PdfCreate = () => {
                 // pdf.addImage(imgData, 'JPEG', 0, 0);
                 // doc.output('pdfjsnewwindow');
                 doc.save("download.pdf");
+                setLoading(false)
+            }).catch((err)=>{
+                alert(err.message)
+                setLoading(false)
             })
+            
             ;
     }
     return (
         <div className="df column row bg-primary">
             
-            <Button variant="contained" color="secondary" className="container-max font-metropolis-bold titles txt-primary" style={{ margin: "auto" }} onClick={() => { printDocument() }}>Download Report</Button>
-            <Result />
+            {/* <Button variant="contained" color="secondary" className="container-max font-metropolis-bold titles txt-primary" style={{ margin: "auto" }} onClick={() => { printDocument() }}>Download Report</Button> */}
+            <Result printDocument={printDocument} loading={loading} />
             <div className="fit-content" style={{ position: "fixed", zIndex: -1,background:"white", top: "0px", left: "0px", overflowY: "scroll" }}>
-                <div style={{ width: "1200px" ,margin:"auto"}}>
+                <div style={{ width: "1500px" ,margin:"auto"}}>
                     <div className="df row column p-primary" id="pdfCreate"  /*style={{ position: "fixed", top: "0px", left: "0px", zIndex: -1 }} */ >
                         <PrintResult />
                     </div>

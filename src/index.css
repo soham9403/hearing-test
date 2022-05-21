@@ -4,6 +4,9 @@
   padding: 0px;
   
 }
+.pointer{
+  cursor: pointer;
+}
 @font-face {
   font-family: font-h1-metropolis-bold;
   src: url('./assets/fontfamily/metropolis/Metropolis-Bold.otf');
@@ -48,27 +51,14 @@
 .description{
   font-size: 18px;
 }
-.device_selection_box{
-  width: 200px;
-  height: 200px;
-  transition: all 0.2s linear;
-  border: 1px solid #EF135B;
-}
+
 .device_selection_box span{
-  color: #CCCCCC;
+  /* color: #CCCCCC; */
 }
 .device_selection_box svg path{
-  fill: #CCCCCC;
+  /* fill: #CCCCCC; */
 }
-.device_selection_box_active{
-  background-color: #EF135B;
-}
-.device_selection_box_active span{
-  color: white;
-}
-.device_selection_box_active svg path{
-  fill: white;
-}
+
 .device_selection_box:nth-child(even){
   margin-left: 20px;
   margin-right: 20px;
@@ -102,10 +92,10 @@
   .description{
     font-size: 16px;
   }
-  .device_selection_box{
+  /* .device_selection_box{
     height: 150px;
     width: 150px;
-  }
+  } */
 }
 @media (max-width:720px){
   .heading{
@@ -131,10 +121,10 @@
   .titles{
     font-size: 16px;
   }
-  .device_selection_box{
+  /* .device_selection_box{
     height: 130px;
     width: 130px;
-  }
+  } */
 }
 a,button{
   text-decoration: none;
@@ -147,6 +137,9 @@ a,button{
 }
 .flex-1{
   flex: 1 1;
+}
+.flex-end{
+  justify-content: flex-end;
 }
 .row{
   width: 100%;
@@ -333,7 +326,7 @@ a,button{
   max-width: 450px;
 }
 .small_container{
-  width: 95%;
+  width: 90%;
   max-width: 400px;
   margin: auto;
 }

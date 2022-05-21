@@ -2,7 +2,7 @@ const initialState = {
     name: "",
     email: "",
     age: "",
-    gender: ""
+    gender: "Male"
 }
 const personaldetailsReducer = (state = initialState, action) => {
     switch (action.type) {

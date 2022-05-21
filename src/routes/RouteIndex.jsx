@@ -23,7 +23,7 @@ const RouteIndex = () => {
     return (
         <>
             <BrowserRouter>
-                <NavBar>
+                {/* <NavBar> */}
                     <Routes>
                         <Route path={rootUrl + "/"} element={<Index />} />
                         <Route path={rootUrl + "/step"} element={<TestingMainController />}>
@@ -38,14 +38,14 @@ const RouteIndex = () => {
                             <Route path={rootUrl + "/step/6"} element={<StepViewer />} />
                             <Route path={rootUrl + "/step/7"} element={<LanguageSelectionController />} />
                             <Route path={rootUrl + "/step/8/:language"} element={<KeyPadTestController />} />
-                            
+                            <Route path={rootUrl + "/step/result"} element={<PdfCreate />} />
                         </Route>
-                        <Route path={rootUrl + "/result"} element={<PdfCreate />} />
+                        
                         <Route path={rootUrl + "/pdf"} element={<PdfCreate />} />
                         <Route path={"*"} element={<NotFound/>}></Route>
 
                     </Routes>
-                </NavBar>
+                {/* </NavBar> */}
             </BrowserRouter>
         </>
     );

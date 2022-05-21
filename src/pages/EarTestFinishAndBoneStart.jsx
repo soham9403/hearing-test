@@ -1,6 +1,7 @@
 import { Button} from '@mui/material'
 
 import {  useNavigate } from 'react-router'
+import CustomButton from '../components/CustomButton'
 import { rootUrl } from '../routes/RouteIndex'
 
 const EarTestFinishAndBoneStart = () => {
@@ -12,29 +13,29 @@ const EarTestFinishAndBoneStart = () => {
   return (
     <>
       <div className='small_container'>
-        <div className='df row m-v-secondary'></div>
+        
       </div>
-      <h1 className='sub-heading df p-h-primary row center  font-metropolis-bold m-v-primary'>
+      <h1 className='sub-heading mt-1 df h2 bold-2 row center font-intern'>
         YOUR EAR TEST IS FINISHED
       </h1>
-      <div className='container-max m-v-secondary' style={{ marginTop: '0px' }}>
-        <p
-          className='titles row df font-metropolis-regular m-v-primary  center'
-          style={{ lineHeight: '120%' }}
-        >
-          Click On Start Button to start BONE TEST
-        </p>
-      </div>
-      <Button
-        variant='contained'
+      
+      <h1 className='sub-heading mt-1 df h4 text-2-primary mb-1 bold-2 row center font-intern'>
+      Click On Start Button to start BONE TEST
+      </h1>
+     
+      <div className='small_container'>
+      <CustomButton
+        
         onClick={() => {
           navigate(rootUrl + '/step/bone/5')
         }}
-        className='row p-primary'
-        color='secondary'
+       
+        
+        text="Start"
       >
-        Start
-      </Button>
+        
+      </CustomButton>
+      </div>
     </>
   )
 }

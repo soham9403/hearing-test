@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+:root {
+    --basefont: 1.667vw;
+    /* //24px */
+
+}
+
+.h1 {
+    /* font-size: 84px;    */
+    font-size: calc(var(--basefont) * 3.5);
+}
+
+.h2 {
+    /* font-size: 48px;    */
+    font-size: calc(var(--basefont) * 2);
+}
+
+.h3 {
+    /* font-size: 36px;    */
+    font-size: calc(var(--basefont) * 1.5);
+}
+
+.h4 {
+    /* font-size: 30px;    */
+    font-size: calc(var(--basefont) * 1.2);
+}
+
+.h5 {
+    /* font-size: 24px;    */
+    font-size: calc(var(--basefont) * 1);
+}
+
+.h6 {
+    /* font-size: 20px;    */
+    font-size: calc(var(--basefont) * 0.83);
+}
+
+.h7 {
+    /* font-size: 16px;    */
+    font-size: calc(var(--basefont) * 0.67);
+}
+
+.body-1 {
+    /* font-size: 96px; */
+    font-size: calc(var(--basefont) * 4);
+}
+
+.body-2 {
+    font-size: calc(var(--basefont) * 3);
+}
+
+.body-3 {
+    font-size: calc(var(--basefont) * 2.5);
+}
+
+.body-4 {
+    /* font-size: 18px; */
+    font-size: calc(var(--basefont) * 0.75);
+}
+
+.download-svg {
+    height: calc(var(--basefont) * 1.2);
+    width: calc(var(--basefont) * 1.2);
+}
+
+.ear-svg {
+    width: calc(var(--basefont) * 1.41666667);
+    height: calc(var(--basefont) * 1.75);
+}
+
+.font-intern {
+    font-family: 'Inter', sans-serif;
+}
+
+.recharts-text {
+    font-family: 'Inter', sans-serif;
+    font-size: calc(var(--basefont) * 0.417);
+
+    fill: #424242;
+    font-weight: 100;
+}
+
+.bold-1 {
+    font-weight: 700;
+}
+
+.bold-2 {
+    font-weight: 500;
+}
+
+.bold-3 {
+    font-weight: 400;
+}
+
+.line-100 {
+    line-height: 100%;
+}
+
+.circle-avg-box {
+    width: calc(var(--basefont) * 6.25);
+    height: calc(var(--basefont) * 6.25);
+    border-radius: 100%;
+    border-width: calc(var(--basefont) * 0.2) !important;
+}
+
+.checkboc-check {
+    width: calc(var(--basefont) * 0.83);
+    height: calc(var(--basefont) * 0.83);
+    background-color: white;
+    margin-right: calc(var(--basefont) * 0.5);
+}
+
+.check-svg {
+    width: calc(var(--basefont) * 0.5);
+    height: calc(var(--basefont) * 0.33)
+}
+.backspace-svg{
+    width: calc(var(--basefont) * 1.33);
+    height: calc(var(--basefont) * 1)
+
+}
+.device_selection_box {
+    width: calc(var(--basefont) * 10.41);
+    height: calc(var(--basefont) * 10.41);
+
+    transition: all 0.2s linear;
+
+}
+
+.stepper-img-box {
+    width: calc(var(--basefont) * 2.5);
+    height: calc(var(--basefont) * 2.5);
+    border-radius: 100%;
+}
+.reply-svg{
+    width: calc(var(--basefont) * 1.25);
+    height: calc(var(--basefont) * 1.25);
+}
+.horizontal-border-box {
+    height: calc(calc(var(--basefont) * 2.5) );
+    border-width: calc(var(--basefont) * 10.41) !important;
+}
+
+.decision-box {
+    height: calc(calc(var(--basefont) * 5.41) );
+    width: calc(calc(var(--basefont) * 5.41) );
+}
+
+
+@media(max-width:992px) {
+    :root {
+        --basefont: 2.016vw;
+        /* //20px */
+
+    }
+}
+
+@media(max-width:450px) {
+    :root {
+        --basefont: 4vw;
+        /* //24px */
+
+    }
+
+    .body-1 {
+        /* font-size: 96px; */
+        font-size: calc(var(--basefont) * 3.5);
+    }
+
+    .h1 {
+        /* font-size: 96px; */
+        font-size: calc(var(--basefont) * 3);
+    }
+
+    .circle-avg-box {
+        width: calc(var(--basefont) * 5.5);
+        height: calc(var(--basefont) * 5.5);
+        border-radius: 100%;
+        border-width: calc(var(--basefont) * 0.2) !important;
+    }
+}
+
+@media(max-width:992px){
+    #pdfCreate {
+        --basefont: 23px;
+    }
+
+
+}

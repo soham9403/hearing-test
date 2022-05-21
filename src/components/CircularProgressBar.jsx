@@ -23,7 +23,7 @@ const CircularProgressBar = props => {
     const radius = size / 2 - strokeWidth / 2;
     const circumference = radius * 2 * Math.PI;
 
-    useEffect(() => {       
+    useEffect(() => {
         const progressOffset = ((100 - progress) / 100) * circumference;
         setOffset(progressOffset);
 
@@ -37,8 +37,12 @@ const CircularProgressBar = props => {
                 className="svg"
                 width={size}
                 height={size}
-                style={{marginTop:marginTop,marginBottom:marginBottom,marginLeft:marginLeft,marginRight:marginRight}}
-                >
+                style={{ marginTop: marginTop, marginBottom: marginBottom, marginLeft: marginLeft, marginRight: marginRight }}
+            >
+                <linearGradient xmlns="http://www.w3.org/2000/svg" id="paint0_linear_75_56" x1="241.5" y1="-97" x2="-80.5" y2="187.5" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#A91674" />
+                    <stop offset="1" stopColor="#E6234A" />
+                </linearGradient>
                 <circle
                     className="svg-circle-bg"
                     stroke={circleOneStroke}
@@ -46,31 +50,31 @@ const CircularProgressBar = props => {
                     cy={center}
                     r={radius}
                     strokeWidth={strokeWidth}
-                    transform = "rotate(-90 100 100)"
+                    transform={`rotate(-90 ${size / 2} ${size / 2})`}
                 />
                 <circle
                     className="svg-circle"
                     ref={circleRef}
-                    stroke={circleTwoStroke}
+                    stroke="url(#paint0_linear_75_56)"
                     cx={center}
                     cy={center}
                     r={radius}
                     strokeWidth={strokeWidth}
                     strokeDasharray={circumference}
                     strokeDashoffset={offset}
-                    transform = "rotate(-90 100 100)"
+                    transform={`rotate(-90 ${size / 2} ${size / 2})`}
 
                 />
-                <text 
-                    x={`${center}`} 
-                    y={`${center}`} 
-                    className="svg-circle-text font-metropolis-bold sub-heading">
-                        {progress}% 
-                       
+                <text
+                    x={`${center}`}
+                    y={`${center}`}
+                    className="svg-circle-text text-2-primary font-intern h3">
+                    {progress}%
+
                 </text>
                 <text
                     x={`${center}`}
-                    y={`${center+50}`} className="svg-circle-text font-metropolis-bold titles">
+                    y={`${center + (center/2)}`} className="svg-circle-text text-2-primary font-intern h5 ">
                     {text}
                 </text>
 
