@@ -17,6 +17,7 @@ import {
 import { useEffect, useRef, useState } from 'react'
 import CircularProgressBar from '../components/CircularProgressBar'
 import Hexagon from '../components/svgs/Heaaxgon'
+import {Link} from 'react-router-dom'
 // import { GoogleSpreadsheet } from 'google-spreadsheet'
 import SheetCred from '../config/spreadsheet.json'
 import axios from 'axios'
@@ -389,7 +390,7 @@ const Result = (props) => {
       url:
         // 'https://lychee-crisp-08059.herokuapp.com/' +
         // 'http://localhost:8000/'+
-        
+
         "https://crm-admin-wehear.herokuapp.com/" +
         'api/hearing-test/add-row',
       method: 'post',
@@ -850,7 +851,13 @@ const Result = (props) => {
               </a>
             </div>
           </div>
+
+
         </div>
+
+        <Link to={'/step/1'}  style={{ flex: "none" }} className='df mb-3 center font-intern mt-2 pl-1 pr-1 pb-4 pt-4 bg-gradient text-2-light radius-1 h5'>
+          Take a Re-test
+        </Link>
       </div>
 
       <div>
