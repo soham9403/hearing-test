@@ -36,6 +36,7 @@ const FrequencyTestController = props => {
   const playTune = () => {
     setPlayState(true)
     try {
+      
       var audioCtx = new AudioContext()
       var gain = audioCtx.createGain()
       var ocs = audioCtx.createOscillator()
@@ -48,12 +49,21 @@ const FrequencyTestController = props => {
       panNode.connect(audioCtx.destination)
       ocs.connect(gain)
       ocs.start()
+      // if(){
+      //   console.log('playing')
+      // }else{
+      //   setError(
+      //     'Oops Something wents Wrong!!! Please restart test. '
+      //   )
+      // }
       ocs.stop(audioCtx.currentTime + 2)
       ocs.onended = () => {
         setPlayState(false)
       }
+      
     } catch (e) {
       console.log(e.message)
+     
       setError(
         'This device/browser is not supporting our test. please use another device/browser '
       )
@@ -168,7 +178,7 @@ const FrequencyTestController = props => {
     }
   }
   if (error !== '') {
-    return <NotSupportError />
+    return <NotSupportError error={error} />
   } else {
     return (
       <>
@@ -181,10 +191,10 @@ const FrequencyTestController = props => {
         </div> */}
         <div className='df p-absolute row center'>
           <div
-          className='h6 font-intern p-3 bg-2-primary text-2-light'
-            style={{ position:"fixed",top:"0px",right:"0px" }}
+            className='h6 font-intern p-3 bg-2-primary text-2-light'
+            style={{ position: "fixed", top: "0px", right: "0px" }}
           >
-            Mode: {mode=='ear'?"Air":mode.toUpperCase()}
+            Mode: {mode == 'ear' ? "AC" : "BC"}
           </div>
         </div>
         <FrequencyTest

@@ -16,13 +16,13 @@ const KeyPadTest = (props) => {
                     <div className="primary-shadow df mb-3 key_pad_container column  radius-0 border-2-primary border-thin" style={{ marginTop: "0px" }}>
 
                         <div className="pl-1 pr-1 pb-3  bg-2-light-gray df  dial-box-row">
-                            <div dangerouslySetInnerHTML={{ __html: props.inputVal.length >= 3 ? props.inputVal.slice(2, 3) : "&nbsp;" }} className="dial-box primary-shadow p-3 bg-2-light text-2-dark bold-2 h4 font-intern pointer df center flex-1 border-thin-primary radius-1">
+                            <div dangerouslySetInnerHTML={{ __html: props.inputVal.length>0 ?props.inputVal.slice(props.inputVal.length-3, props.inputVal.length-2) :"&nbsp;"}} className="dial-box primary-shadow p-3 bg-2-light text-2-dark bold-2 h4 font-intern pointer df center flex-1 border-thin-primary radius-1">
 
                             </div>
-                            <div dangerouslySetInnerHTML={{ __html: props.inputVal.length >= 2 ? props.inputVal.slice(1, 2) : "&nbsp;" }} className="dial-box primary-shadow p-3 bg-2-light text-2-dark bold-2 h4 font-intern pointer df center flex-1 border-thin-primary radius-1">
+                            <div dangerouslySetInnerHTML={{ __html:props.inputVal.length>0 ?props.inputVal.slice(props.inputVal.length-2, props.inputVal.length-1) :"&nbsp;"}} className="dial-box primary-shadow p-3 bg-2-light text-2-dark bold-2 h4 font-intern pointer df center flex-1 border-thin-primary radius-1">
 
                             </div>
-                            <div dangerouslySetInnerHTML={{ __html: props.inputVal.length >= 1 ? props.inputVal.slice(0, 1) : "&nbsp;" }} className="dial-box primary-shadow p-3 bg-2-light text-2-dark bold-2 h4 font-intern pointer df center flex-1 border-thin-primary radius-1">
+                            <div dangerouslySetInnerHTML={{ __html:  props.inputVal.length>0 ?props.inputVal.slice(props.inputVal.length-1, props.inputVal.length):"&nbsp;" }} className="dial-box primary-shadow p-3 bg-2-light text-2-dark bold-2 h4 font-intern pointer df center flex-1 border-thin-primary radius-1">
 
                             </div>
                         </div>
@@ -82,7 +82,7 @@ const KeyPadTest = (props) => {
 
 
                             <div className="df flex-1 column center">
-                                <div className="mb-3">
+                                {/* <div className="mb-3">
                                     <button className="pl-2 pr-2 pt-3 df row-center pb-3 bg-2-primary h5 radius-1 text-2-light pointer" onClick={() => { props.replay() }} >
                                         <svg xmlns="http://www.w3.org/2000/svg" className="reply-svg" viewBox="0 0 30 30" fill="none">
                                             <path d="M2.39999 8.70026V3.30027C2.39999 3.06157 2.49482 2.83265 2.6636 2.66387C2.83238 2.49509 3.0613 2.40027 3.29999 2.40027C3.53869 2.40027 3.76761 2.49509 3.93639 2.66387C4.10517 2.83265 4.19999 3.06157 4.19999 3.30027V5.47287C6.68547 2.64965 10.1794 0.914307 13.9308 0.639866C15.4602 0.523584 16.9984 0.653639 18.4866 1.02507C21.33 1.7355 23.8891 3.29635 25.8222 5.49925C27.7554 7.70215 28.9706 10.4423 29.3057 13.3539C29.6407 16.2655 29.0797 19.2101 27.6975 21.7945C26.3153 24.3789 24.1777 26.4803 21.57 27.8181C19.8095 28.7219 17.8807 29.2508 15.9054 29.3715C12.6019 29.5871 9.32589 28.6507 6.63539 26.7219C5.03595 25.5839 3.68683 24.1301 2.67135 22.4502C1.65588 20.7704 0.995631 18.9001 0.731394 16.9551C0.599704 15.9986 0.564127 15.0314 0.625194 14.0679C0.632758 13.9499 0.663481 13.8346 0.715608 13.7285C0.767735 13.6224 0.840246 13.5277 0.929 13.4496C1.01775 13.3716 1.12101 13.3117 1.23288 13.2736C1.34475 13.2354 1.46304 13.2197 1.58099 13.2273C1.69895 13.2348 1.81426 13.2656 1.92034 13.3177C2.02642 13.3698 2.12119 13.4423 2.19925 13.5311C2.2773 13.6198 2.33711 13.7231 2.37527 13.835C2.41342 13.9468 2.42916 14.0651 2.42159 14.1831C2.40552 14.4552 2.39832 14.7277 2.39999 15.0003C2.39999 20.5803 6.02699 25.3143 11.0544 26.9703C12.8754 27.5694 14.8091 27.7449 16.7082 27.4833C18.1712 27.2848 19.5878 26.8302 20.8932 26.1405C23.4481 24.7845 25.4589 22.5911 26.5883 19.9282C27.7178 17.2654 27.8971 14.2952 27.0962 11.5159C26.2953 8.7365 24.5629 6.31713 22.1897 4.66361C19.8166 3.0101 16.9469 2.22303 14.0622 2.43447C12.8789 2.52467 11.7139 2.77911 10.6008 3.19047C8.19824 4.08842 6.12584 5.69624 4.65899 7.80027H7.79999C8.03869 7.80027 8.26761 7.89509 8.43639 8.06387C8.60517 8.23265 8.69999 8.46157 8.69999 8.70026C8.69999 8.93896 8.60517 9.16788 8.43639 9.33666C8.26761 9.50544 8.03869 9.60027 7.79999 9.60027H3.29999C3.06159 9.59932 2.83322 9.50419 2.66465 9.33561C2.49607 9.16704 2.40094 8.93867 2.39999 8.70026ZM10.5 11.3409C10.5 9.66687 12.264 8.57787 13.7616 9.33027L21.0336 12.9897C22.6842 13.8213 22.6842 16.1793 21.0336 17.0109L13.7616 20.6685C13.4188 20.841 13.0375 20.923 12.6541 20.9067C12.2706 20.8903 11.8977 20.7761 11.5708 20.575C11.244 20.3738 10.974 20.0924 10.7865 19.7575C10.5991 19.4226 10.5005 19.0453 10.5 18.6615V11.3409Z" fill="#FEFEFE" />
@@ -90,7 +90,7 @@ const KeyPadTest = (props) => {
 
                                         &nbsp;&nbsp;Replay &nbsp;&nbsp;&nbsp;
                                     </button>
-                                </div>
+                                </div> */}
                                 <div className="mb-3">
                                     <button className="pl-2 pr-2 pt-3 df row-center pb-3 bg-2-primary h5 radius-1 text-2-light pointer" onClick={() => { props.notHeard() }} text="Not heard">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="reply-svg" viewBox="0 0 36 36" fill="none">

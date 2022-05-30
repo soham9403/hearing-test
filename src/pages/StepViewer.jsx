@@ -67,9 +67,11 @@ const StepViewer = () => {
             className='h4 bold-2 text-2-primary center font-intern'
             style={{ lineHeight: '120%' }}
           >
-            In next test different frequency will be played,
-            <br />you have to set the
-            volume from bar when you can hear the sound/ tones barely. This test
+            In next test different frequencies will be played,
+            <br />
+            {/* you have to set the
+            volume from bar when you can hear the sound/ tones barely.  */}
+            This test
             will calculate how your ears respond to different frequencies.
           </p>
         ) : (

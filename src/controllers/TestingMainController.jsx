@@ -5,15 +5,20 @@ import HearingTestSymbol from "../components/svgs/HearingTestSymbol";
 import { rootUrl } from "../routes/RouteIndex";
 import { detect } from 'detect-browser'
 import NotSupportError from "../components/NotSupportError";
+import Loader from "../components/Loader";
+
 const TestingMainController = () => {
     const location = useLocation()
     const navigate = useNavigate()
+    const [loading,setLoading] = useState(true)
     const [error, setError] = useState("")
     useEffect(() => {
         const pathArr = location.pathname.split("/")
         const stepNo = pathArr[pathArr.length - 1]
         if (stepNo !== 1) {
             // navigate(rootUrl + "/step/1")
+            setLoading(false)
+            return;
         }
         
 
@@ -30,11 +35,15 @@ const TestingMainController = () => {
             setError('Web Audio API is not supported in ' + browser.name + ' browser')
             // }                
         }
+        setLoading(false)
     }, [])
 
+    if(loading){
+        return <Loader />
+    }
     if (error !== "") {
         return(
-           <NotSupportError />
+           <NotSupportError error={error} />
         )
     } else {
         return (

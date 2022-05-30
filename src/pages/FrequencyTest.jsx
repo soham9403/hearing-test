@@ -20,7 +20,7 @@ const FrequencyTest = (props) => {
                 </div>
 
             </div>
-            <span className="df row font-intern body-2 center mt-1 text-2-primary line-100 mb-2">{props.dbValue + 100}DB</span>
+            <span className="df row font-intern body-2 center mt-1 text-2-primary line-100 mb-2">{props.dbValue + 100}dB</span>
             <ProgreeBar value={(props.level * 100) / props.totalFrquenctTest} />
             {!props.playState ? <div className="df row center m-v-primary">
                 <button className="df radius-0 p-2 center mr-1 decision-box bg-2-success" onClick={() => { props.canHear() }}>

@@ -37,7 +37,7 @@ const initialstate = {
         },
     ],
     device_selected: "",
-    test_mode:'ear',
+    test_mode:'both',
 
 }
 const personalIntrestReducer = (state = initialstate, action) => {

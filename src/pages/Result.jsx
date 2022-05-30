@@ -17,7 +17,7 @@ import {
 import { useEffect, useRef, useState } from 'react'
 import CircularProgressBar from '../components/CircularProgressBar'
 import Hexagon from '../components/svgs/Heaaxgon'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 // import { GoogleSpreadsheet } from 'google-spreadsheet'
 import SheetCred from '../config/spreadsheet.json'
 import axios from 'axios'
@@ -37,14 +37,17 @@ const Result = (props) => {
     return state.earTest
   })
 
-  const [states, setStates] = useState({ stateL: 1, stateR: 1 })
+  const [states, setStates] = useState({ stateL: 1, stateR: 1, stateBoneL: 1, stateBoneR: 1 })
   const CustomDot = props => {
     const { cx, cy } = props
     if (props.isCircle)
       return (
-        <path cx={cx - 5} cy={cy - 5} style={{
+        <path cx={cx - 5} cy={cy - 5} opacity={props.opacity ? props.opacity : 1} style={{
           transform: 'translate(' + (cx - 5) + 'px,' + (cy - 5) + 'px)'
-        }} xmlns="http://www.w3.org/2000/svg" d="M4.69901 8.76546C3.61918 8.76546 2.58356 8.33657 1.81991 7.5731C1.05625 6.80964 0.627101 5.77413 0.626831 4.6943C0.626561 3.61446 1.05519 2.57873 1.81847 1.81489C2.58174 1.05104 3.61714 0.621634 4.69698 0.621094C5.77681 0.620554 6.81265 1.04893 7.57668 1.81201C8.34072 2.57509 8.77039 3.61039 8.7712 4.69022C8.77201 5.77006 8.34389 6.806 7.581 7.57023C6.81811 8.33445 5.78292 8.76438 4.70309 8.76546H4.69901Z" fill="#E6234A" />
+        }} xmlns="http://www.w3.org/2000/svg" d="M4.69901 8.76546C3.61918 8.76546 2.58356 8.33657 1.81991 7.5731C1.05625 6.80964 0.627101 5.77413 0.626831 4.6943C0.626561 3.61446 1.05519 2.57873 1.81847 1.81489C2.58174 1.05104 3.61714 0.621634 4.69698 0.621094C5.77681 0.620554 6.81265 1.04893 7.57668 1.81201C8.34072 2.57509 8.77039 3.61039 8.7712 4.69022C8.77201 5.77006 8.34389 6.806 7.581 7.57023C6.81811 8.33445 5.78292 8.76438 4.70309 8.76546H4.69901Z"
+          stroke='#E6234A'
+          strokeWidth={"2"}
+          fill="white" />
       )
     return (
       // <path
@@ -58,9 +61,10 @@ const Result = (props) => {
       //   fill='#A91674'
       // />
 
-      <path cx={cx - 5} cy={cy - 5} style={{
+      <path cx={cx - 5} cy={cy - 5} opacity={props.opacity ? props.opacity : 1} style={{
         transform: 'translate(' + (cx - 5) + 'px,' + (cy - 5) + 'px)'
-      }} xmlns="http://www.w3.org/2000/svg" d="M7.90499 0.357932L4.99999 3.26309C4.03171 2.29512 3.06312 1.32621 2.09468 0.357932C0.974365 -0.76238 -0.762198 0.974807 0.357177 2.09543C1.32577 3.06309 2.29468 4.03215 3.26218 5.00043C2.29423 5.96916 1.3259 6.93749 0.357177 7.90543C-0.762198 9.02543 0.974521 10.7622 2.09468 9.64293C3.06296 8.67434 4.03155 7.70559 4.99983 6.73762L7.90483 9.64293C9.02515 10.7629 10.7622 9.02559 9.64233 7.90543C8.67374 6.93684 7.70546 5.96856 6.73655 5.00012C7.7053 4.03153 8.67358 3.06293 9.64233 2.09449C10.7623 0.974807 9.0253 -0.76238 7.90483 0.358557" fill="#A91674" />
+      }} xmlns="http://www.w3.org/2000/svg" d="M7.90499 0.357932L4.99999 3.26309C4.03171 2.29512 3.06312 1.32621 2.09468 0.357932C0.974365 -0.76238 -0.762198 0.974807 0.357177 2.09543C1.32577 3.06309 2.29468 4.03215 3.26218 5.00043C2.29423 5.96916 1.3259 6.93749 0.357177 7.90543C-0.762198 9.02543 0.974521 10.7622 2.09468 9.64293C3.06296 8.67434 4.03155 7.70559 4.99983 6.73762L7.90483 9.64293C9.02515 10.7629 10.7622 9.02559 9.64233 7.90543C8.67374 6.93684 7.70546 5.96856 6.73655 5.00012C7.7053 4.03153 8.67358 3.06293 9.64233 2.09449C10.7623 0.974807 9.0253 -0.76238 7.90483 0.358557"
+        fill="#A91674" />
     )
   }
   const CustomBoneLEftDot = props => {
@@ -81,6 +85,7 @@ const Result = (props) => {
       <path
         cx={cx - 10}
         cy={cy - 10}
+        opacity={props.opacity}
         style={{
           transform: 'translate(' + (cx - 10) + 'px,' + (cy - 11) + 'px)'
         }}
@@ -100,6 +105,7 @@ const Result = (props) => {
         style={{
           transform: 'translate(' + (cx - 15) + 'px,' + (cy - 12) + 'px) '
         }}
+        opacity={props.opacity}
         xmlns='http://www.w3.org/2000/svg'
         fill='#E6234A'
         d='M 15.54 11.29 L 9.88 5.64 a 1 1 0 0 0 -1.42 0 a 1 1 0 0 0 0 1.41 l 4.95 5 L 8.46 17 a 1 1 0 0 0 0 1.41 a 1 1 0 0 0 0.71 0.3 a 1 1 0 0 0 0.71 -0.3 l 5.66 -5.65 A 1 1 0 0 0 15.54 11.29 Z'
@@ -108,6 +114,78 @@ const Result = (props) => {
   }
 
   const initialize = () => {
+
+
+    // let leftAge = 0
+    // let rightAge = 0
+    // const leftData =
+    //   personalIntrest.test_mode == 'bone' ? dataBONELeft : dataLeft
+    // const rightData =
+    //   personalIntrest.test_mode == 'bone' ? dataBONERight : dataRight
+    // var normalL = 0,
+    //   moderateL = 0,
+    //   severeL = 0
+    // var normalR = 0,
+    //   moderateR = 0,
+    //   severeR = 0
+
+    // for (var i = 0; i < 7; i++) {
+    //   var dbValLeft = leftData[i].uv / 5 - 1
+    //   var dbValRight = rightData[i].uv / 5 - 1
+    //   if (leftData[i].uv < 30) {
+    //     normalL++
+    //   } else if (leftData[i].uv < 70) {
+    //     moderateL++
+    //   } else {
+    //     severeL++
+    //   }
+
+    //   if (rightData[i].uv < 30) {
+    //     normalR++
+    //   } else if (rightData[i].uv < 70) {
+    //     moderateR++
+    //   } else {
+    //     severeR++
+    //   }
+
+    //   leftAge += comparisonMatrix[i][dbValLeft]
+    //   rightAge += comparisonMatrix[i][dbValRight]
+    // }
+
+    // let ageLeft = Math.round(leftAge / 7)
+    // let ageRight = Math.round(rightAge / 7)
+    // let phiLeft = 60 - (ageLeft - parseInt(personalDetails.age)) * 2
+    // let phiRight = 60 - (ageRight - parseInt(personalDetails.age)) * 2
+    // let phitotal = (phiLeft + phiRight) / 2
+    // let earLossAgeLeft = 64 - (60 - phiLeft) / 2
+    // let earLossAgeRight = 64 - (60 - phiRight) / 2
+    // var stateR = 0
+    // var stateL = 0
+
+    // // this.setState({ "setState": "working" })
+
+    // if (normalL > moderateL && normalL > severeL) {
+    //   stateL = 1
+    // } else if (moderateL > normalL && moderateL > severeL) {
+    //   stateL = 2
+    // } else if (severeL > normalL && severeL > moderateL) {
+    //   stateL = 3
+    // }
+
+    // if (normalR > moderateR && normalR > severeR) {
+    //   stateR = 1
+    // } else if (moderateR > normalR && moderateR > severeR) {
+    //   stateR = 2
+    // } else if (severeR > normalR && severeR > moderateR) {
+    //   stateR = 3
+    // }
+    // sendReqToaddRow()
+    const { stateL, stateR, phitotal } = countPhiAndState()
+    const BonePhiAndStateval = countPhiAndState(true)
+    setStates({ stateL: stateL, stateR: stateR, stateBoneL: BonePhiAndStateval.stateL, stateBoneR: BonePhiAndStateval.stateR })
+    setPhi(phitotal)
+  }
+  const countPhiAndState = (isBone) => {
     let comparisonMatrix = [
       [
         13,
@@ -264,13 +342,12 @@ const Result = (props) => {
         86
       ]
     ]
-
     let leftAge = 0
     let rightAge = 0
     const leftData =
-      personalIntrest.test_mode == 'bone' ? dataBONELeft : dataLeft
+      isBone ? dataBONELeft : dataLeft
     const rightData =
-      personalIntrest.test_mode == 'bone' ? dataBONERight : dataRight
+      isBone ? dataBONERight : dataRight
     var normalL = 0,
       moderateL = 0,
       severeL = 0
@@ -328,9 +405,11 @@ const Result = (props) => {
     } else if (severeR > normalR && severeR > moderateR) {
       stateR = 3
     }
-    sendReqToaddRow()
-    setStates({ stateL: stateL, stateR: stateR })
-    setPhi(phitotal)
+    return {
+      stateR,
+      stateL,
+      phitotal
+    }
   }
   const ref = useRef(null)
   const getColor = sideState => {
@@ -407,36 +486,39 @@ const Result = (props) => {
     return (sum / count)
   }
   const LeftRightComponent = props => {
+    const [active, setActive] = useState(personalIntrest.test_mode == 'bone' ? "bone" : "ear")
     return (
       <>
         <div className='df column row'>
 
           <div className='df flex-end row-center pt-2 '>
-            <div className='df row-center pl-3 pr-3 pt-4 pb-4 mr-2 border-2-primary radius-2'>
-              <span className='h7 font-intern df mr-3 '>{props.isLeft ? 'Air Left' : "Air Right"}</span>
+            {(personalIntrest.test_mode == 'both' || personalIntrest.test_mode == 'ear') && <button className='df pointer row-center pl-3 pr-3 pt-4 pb-4 mr-2 border-2-primary radius-2' style={{ borderWidth: active == "ear" ? '2px' : '1px', zIndex: 1 }} onClick={() => { setActive('ear') }}>
+              <span style={{ zIndex: "0" }} className='h7 font-intern df mr-3 '>{'AC'}</span>
 
-              {props.isLeft ? <svg xmlns="http://www.w3.org/2000/svg" className='notation-svg' viewBox="0 0 10 10" fill="none">
+              {props.isLeft ? <svg style={{ zIndex: "0" }} xmlns="http://www.w3.org/2000/svg" className='notation-svg' viewBox="0 0 10 10" fill="none">
                 <path d="M7.90502 0.357932L5.00002 3.26309C4.03174 2.29512 3.06315 1.32621 2.09471 0.357932C0.974395 -0.76238 -0.762168 0.974807 0.357208 2.09543C1.3258 3.06309 2.29471 4.03215 3.26221 5.00043C2.29427 5.96916 1.32593 6.93749 0.357208 7.90543C-0.762168 9.02543 0.974552 10.7622 2.09471 9.64293C3.06299 8.67434 4.03158 7.70559 4.99986 6.73762L7.90487 9.64293C9.02518 10.7629 10.7622 9.02559 9.64237 7.90543C8.67377 6.93684 7.70549 5.96856 6.73658 5.00012C7.70533 4.03153 8.67362 3.06293 9.64237 2.09449C10.7624 0.974807 9.02533 -0.76238 7.90487 0.358557" fill="#A91674" />
               </svg>
                 :
-                <svg xmlns="http://www.w3.org/2000/svg" className='notation-svg' viewBox="0 0 9 9" fill="none">
-                  <path d="M4.69901 8.76546C3.61918 8.76546 2.58356 8.33657 1.81991 7.5731C1.05625 6.80964 0.627101 5.77413 0.626831 4.6943C0.626561 3.61446 1.05519 2.57873 1.81847 1.81489C2.58174 1.05104 3.61714 0.621634 4.69698 0.621094C5.77681 0.620554 6.81265 1.04893 7.57668 1.81201C8.34072 2.57509 8.77039 3.61039 8.7712 4.69022C8.77201 5.77006 8.34389 6.806 7.581 7.57023C6.81811 8.33445 5.78292 8.76438 4.70309 8.76546H4.69901Z" fill="#E6234A" />
+                <svg style={{ zIndex: "0" }} xmlns="http://www.w3.org/2000/svg" className='notation-svg' viewBox="0 0 10 10" fill="none">
+                  <path d="M4.69901 8.76546C3.61918 8.76546 2.58356 8.33657 1.81991 7.5731C1.05625 6.80964 0.627101 5.77413 0.626831 4.6943C0.626561 3.61446 1.05519 2.57873 1.81847 1.81489C2.58174 1.05104 3.61714 0.621634 4.69698 0.621094C5.77681 0.620554 6.81265 1.04893 7.57668 1.81201C8.34072 2.57509 8.77039 3.61039 8.7712 4.69022C8.77201 5.77006 8.34389 6.806 7.581 7.57023C6.81811 8.33445 5.78292 8.76438 4.70309 8.76546H4.69901Z" stroke='#E6234A'
+                    strokeWidth={"1"}
+                    fill="white" />
                 </svg>
-              }    </div>
+              }    </button>}
 
 
-            <div className='df row-center pt-4 pb-4 pl-3 pr-3 mr-1 border-2-primary radius-2'>
-              <span className='h7 font-intern df mr-3 '>{props.isLeft ? 'Bone Left' : "Bone Right"}</span>
-              <svg className='notation-svg'>
+            {(personalIntrest.test_mode == 'both' || personalIntrest.test_mode == 'bone') && <button className='df pointer row-center pt-4 pb-4 pl-3 pr-3 mr-1 border-2-primary radius-2' style={{ borderWidth: active == "bone" ? '2px' : '1px', zIndex: 1 }} onClick={() => { setActive('bone') }}>
+              <span style={{ zIndex: "0" }} className='h7 font-intern df mr-3 '>{'BC'}</span>
+              <svg style={{ zIndex: "0" }} className='notation-svg' viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 {/* <CustomDot isCircle={!props.isLeft} cx={12} cy={12} /> */}
-                {props.isLeft ? <svg xmlns="http://www.w3.org/2000/svg" className='notation-svg' viewBox="0 0 12 20" fill="none">
+                {props.isLeft ?
                   <path d="M11.0608 19.5462C11.342 19.2649 11.5 18.8834 11.5 18.4857C11.5 18.0879 11.342 17.7065 11.0608 17.4252L3.63582 10.0002L11.0608 2.57517C11.3341 2.29227 11.4853 1.91336 11.4818 1.52007C11.4784 1.12677 11.3207 0.750555 11.0425 0.472443C10.7644 0.19433 10.3882 0.0365791 9.99492 0.0331611C9.60163 0.0297431 9.22273 0.180935 8.93982 0.454172L0.454321 8.93967C0.173114 9.22096 0.015141 9.60243 0.015141 10.0002C0.015141 10.3979 0.173114 10.7794 0.454321 11.0607L8.93982 19.5462C9.22111 19.8274 9.60257 19.9854 10.0003 19.9854C10.3981 19.9854 10.7795 19.8274 11.0608 19.5462Z" fill="#A91674" />
-                </svg> :
-                  <svg className='notation-svg' viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0.93918 19.5462C0.657973 19.2649 0.5 18.8834 0.5 18.4857C0.5 18.0879 0.657973 17.7065 0.93918 17.4252L8.36418 10.0002L0.939179 2.57517C0.665942 2.29227 0.51475 1.91336 0.518167 1.52007C0.521585 1.12677 0.679339 0.750555 0.957451 0.472443C1.23556 0.19433 1.61178 0.0365791 2.00508 0.0331611C2.39837 0.0297431 2.77727 0.180935 3.06018 0.454172L11.5457 8.93967C11.8269 9.22096 11.9849 9.60243 11.9849 10.0002C11.9849 10.3979 11.8269 10.7794 11.5457 11.0607L3.06018 19.5462C2.77889 19.8274 2.39743 19.9854 1.99968 19.9854C1.60193 19.9854 1.22047 19.8274 0.93918 19.5462Z" fill="#A91674" />
-                  </svg>}
+                  :
+
+                  <path d="M0.93918 19.5462C0.657973 19.2649 0.5 18.8834 0.5 18.4857C0.5 18.0879 0.657973 17.7065 0.93918 17.4252L8.36418 10.0002L0.939179 2.57517C0.665942 2.29227 0.51475 1.91336 0.518167 1.52007C0.521585 1.12677 0.679339 0.750555 0.957451 0.472443C1.23556 0.19433 1.61178 0.0365791 2.00508 0.0331611C2.39837 0.0297431 2.77727 0.180935 3.06018 0.454172L11.5457 8.93967C11.8269 9.22096 11.9849 9.60243 11.9849 10.0002C11.9849 10.3979 11.8269 10.7794 11.5457 11.0607L3.06018 19.5462C2.77889 19.8274 2.39743 19.9854 1.99968 19.9854C1.60193 19.9854 1.22047 19.8274 0.93918 19.5462Z" fill="#A91674" />
+                }
               </svg>
-            </div>
+            </button>}
 
           </div>
 
@@ -452,14 +534,38 @@ const Result = (props) => {
                   baseLine={0}
                 >
                   <defs>
-                    <linearGradient id='colorUv' gradientTransform="rotate(0, 0.5, 0.5)" x1="50%" y1="0%" x2="50%" y2="100%" >
-                      <stop stopColor={getColor(
-                        props.isLeft ? states.stateL : states.stateR
-                      )} stopOpacity="0.9" offset="0%"></stop>
-                      <stop stopColor={getColor(
-                        props.isLeft ? states.stateL : states.stateR
-                      )} stopOpacity="0.1" offset="100%"></stop>
-                    </linearGradient>
+                    {(personalIntrest.test_mode == 'ear' ||
+                      personalIntrest.test_mode == 'both') &&
+                      <linearGradient id={`colorUv${props.isLeft ? 'left' : 'right'}`} gradientTransform="rotate(0, 0.5, 0.5)" x1="50%" y1="0%" x2="50%" y2="100%" >
+
+
+
+                        <stop stopColor={getColor(
+                          props.isLeft ? states.stateL : states.stateR
+                        )} stopOpacity="0.9" offset="0%"></stop>
+                        <stop stopColor={getColor(
+                          props.isLeft ? states.stateL : states.stateR
+                        )} stopOpacity="0.1" offset="100%"></stop>
+
+
+                      </linearGradient>}
+
+
+                    {(personalIntrest.test_mode == 'bone' ||
+                      personalIntrest.test_mode == 'both') &&
+                      <linearGradient id={`colorUvBone${props.isLeft ? 'left' : 'right'}`} gradientTransform="rotate(0, 0.5, 0.5)" x1="50%" y1="0%" x2="50%" y2="100%" >
+
+
+
+                        <stop stopColor={getColor(
+                          props.isLeft ? states.stateBoneL : states.stateBoneR
+                        )} stopOpacity="0.9" offset="0%"></stop>
+                        <stop stopColor={getColor(
+                          props.isLeft ? states.stateBoneL : states.stateBoneR
+                        )} stopOpacity="0.1" offset="100%"></stop>
+
+
+                      </linearGradient>}
 
                   </defs>
                   <CartesianGrid stroke='#DEDEDE' strokeOpacity={0.5} />
@@ -479,12 +585,13 @@ const Result = (props) => {
                       <Area
                         type={'linear'}
                         dataKey='uv'
-                        isAnimationActive={false}
+                        // isAnimationActive={false}
+                        // key={active}
                         stroke='#E6234A'
-                        fillOpacity={0.8}
-                        fill='url(#colorUv)'
-                        strokeOpacity={1}
-                        dot={props.isLeft ? <CustomDot /> : <CustomDot isCircle={true} />}
+                        fillOpacity={active == 'ear' ? "0.8" : "0.1"}
+                        fill={`url(#colorUv${props.isLeft ? 'left' : 'right'})`}
+                        strokeOpacity={active == 'ear' ? "1" : "0.1"}
+                        dot={props.isLeft ? <CustomDot opacity={active == 'ear' ? "1" : "0.1"} /> : <CustomDot opacity={active == 'ear' ? "1" : "0.1"} isCircle={true} />}
                       />
                     )}
                   {(personalIntrest.test_mode == 'bone' ||
@@ -492,16 +599,17 @@ const Result = (props) => {
                       <Area
                         type={'linear'}
                         dataKey='bone_uv'
-                        isAnimationActive={false}
+                        // isAnimationActive={false}
+                        // key={active}
                         stroke='#A91674'
-                        fillOpacity={0.8}
-                        fill='url(#colorUv)'
-                        strokeOpacity={1}
+                        fillOpacity={active == 'bone' ? "0.8" : "0.1"}
+                        fill={`url(#colorUvBone${props.isLeft ? 'left' : 'right'})`}
+                        strokeOpacity={active == 'bone' ? "1" : "0.1"}
                         dot={
                           props.isLeft ? (
-                            <CustomBoneLEftDot />
+                            <CustomBoneLEftDot opacity={active == 'bone' ? "0.8" : "0.1"} />
                           ) : (
-                            <CustomBoneRightDot />
+                            <CustomBoneRightDot opacity={active == 'bone' ? "0.8" : "0.1"} />
                           )
                         }
                       />
@@ -745,38 +853,10 @@ const Result = (props) => {
             rightComponent={<LeftRightComponent />}
           />
         </div>
-
-        {(personalIntrest.test_mode == 'bone' ||
-          personalIntrest.test_mode == 'both') && <div className='container center column df mt-2 primary-shadow border-2-primary border-2-primary-thin radius-0 pl-1 pr-1 pt-2 pb-2 mb-2'>
-            <h3 className='h4 font-intern text-2-primary mb-2'>Bone Conduction</h3>
-
-            <div className='df row' style={{ flexWrap: "wrap" }}>
-              <div className='df flex-1 center  '>
-                <div className='circle-avg-box df center border-2-primary column '>
-                  <h3 className='h5 font-intern text-2-primary'>LEFT EAR</h3>
-                  <span className='h6 font-intern text-2-primary'>{getAverage(dataBONELeft).toFixed(2)}</span>
-                </div>
-              </div>
-              <div className='df flex-1 center  ml-2 '>
-                <div className='circle-avg-box df center border-2-primary column '>
-                  <h3 className='h5 font-intern text-2-primary'>AVG</h3>
-                  <span className='h6 font-intern text-2-primary'>{((getAverage(dataBONELeft) + getAverage(dataBONERight)) / 2).toFixed(2)}</span>
-                </div>
-              </div>
-              <div className='df flex-1 center  ml-2'>
-                <div className='circle-avg-box df center border-2-primary column '>
-                  <h3 className='h5 font-intern text-2-primary'>RIGHT EAR</h3>
-                  <span className='h6 font-intern text-2-primary'>{getAverage(dataBONERight).toFixed(2)}</span>
-                </div>
-              </div>
-            </div>
-
-          </div>}
-
         {(personalIntrest.test_mode == 'ear' ||
           personalIntrest.test_mode == 'both') &&
           <div className='container center column df mt-2 primary-shadow border-2-primary border-2-primary-thin radius-0 pl-1 pr-1 pt-2 pb-2 mb-2'>
-            <h3 className='h4 font-intern text-2-primary mb-2'>Air Conduction</h3>
+            <h3 className='h4 font-intern text-2-primary mb-2'>AC Hearing Analysis</h3>
 
             <div className='df row' style={{ flexWrap: "wrap" }} >
 
@@ -784,23 +864,51 @@ const Result = (props) => {
               <div className='df flex-1 center  '>
                 <div className='circle-avg-box df center border-2-primary column '>
                   <h3 className='h5 font-intern text-2-primary'>LEFT EAR</h3>
-                  <span className='h6 font-intern text-2-primary'>{getAverage(dataLeft).toFixed(2)}</span>
+                  <span className='h6 font-intern text-2-primary'>{Math.round(getAverage(dataLeft))}dB</span>
                 </div>
               </div>
               <div className='df flex-1 center    '>
                 <div className='circle-avg-box df center border-2-primary column '>
-                  <h3 className='h5 font-intern text-2-primary'>AVG</h3>
-                  <span className='h6 font-intern text-2-primary'>{((getAverage(dataLeft) + getAverage(dataRight)) / 2).toFixed(2)}</span>
+                  <h3 className='h5 font-intern text-2-primary'>AVERAGE</h3>
+                  <span className='h6 font-intern text-2-primary'>{Math.round((getAverage(dataLeft) + getAverage(dataRight)) / 2)}dB</span>
                 </div>
               </div>
               <div className='df flex-1 center  '>
                 <div className='circle-avg-box df center border-2-primary column '>
                   <h3 className='h5 font-intern text-2-primary'>RIGHT EAR</h3>
-                  <span className='h6 font-intern text-2-primary'>{getAverage(dataRight).toFixed(2)}</span>
+                  <span className='h6 font-intern text-2-primary'>{Math.round(getAverage(dataRight))}dB</span>
                 </div>
               </div>
             </div>
           </div>}
+        {(personalIntrest.test_mode == 'bone' ||
+          personalIntrest.test_mode == 'both') && <div className='container center column df mt-2 primary-shadow border-2-primary border-2-primary-thin radius-0 pl-1 pr-1 pt-2 pb-2 mb-2'>
+            <h3 className='h4 font-intern text-2-primary mb-2'>BC Hearing Analysis</h3>
+
+            <div className='df row' style={{ flexWrap: "wrap" }}>
+              <div className='df flex-1 center  '>
+                <div className='circle-avg-box df center border-2-primary column '>
+                  <h3 className='h5 font-intern text-2-primary'>LEFT EAR</h3>
+                  <span className='h6 font-intern text-2-primary'>{Math.round(getAverage(dataBONELeft))}dB</span>
+                </div>
+              </div>
+              <div className='df flex-1 center   '>
+                <div className='circle-avg-box df center border-2-primary column '>
+                  <h3 className='h5 font-intern text-2-primary'>AVERAGE</h3>
+                  <span className='h6 font-intern text-2-primary'>{Math.round((getAverage(dataBONELeft) + getAverage(dataBONERight)) / 2)}dB</span>
+                </div>
+              </div>
+              <div className='df flex-1 center  '>
+                <div className='circle-avg-box df center border-2-primary column '>
+                  <h3 className='h5 font-intern text-2-primary'>RIGHT EAR</h3>
+                  <span className='h6 font-intern text-2-primary'>{Math.round(getAverage(dataBONERight))}dB</span>
+                </div>
+              </div>
+            </div>
+
+          </div>}
+
+
 
         <div className='container direction-md-row row-center  df mt-2 primary-shadow border-2-primary border-2-primary-thin radius-0 pl-1 pr-1 pt-1 pb-1 mb-2'>
           <div className='df flex-1 center' style={{ minWidth: window.innerWidth * 0.159 }}>
@@ -855,9 +963,9 @@ const Result = (props) => {
 
         </div>
 
-        <Link to={'/step/1'}  style={{ flex: "none" }} className='df mb-3 center font-intern mt-2 pl-1 pr-1 pb-4 pt-4 bg-gradient text-2-light radius-1 h5'>
+        <a href={window.location.origin + "/step/1"} style={{ flex: "none" }} className='df mb-3 center font-intern mt-2 pl-1 pr-1 pb-4 pt-4 bg-gradient text-2-light radius-1 h5'>
           Take a Re-test
-        </Link>
+        </a>
       </div>
 
       <div>
