@@ -451,3 +451,14 @@ a,button{
 .col-30{
   width: 33.33%;
 }
+button ,a {
+  transition: transform 0.1s linear;
+}
+button:hover ,a:hover {
+  transform: scale(0.97);
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}

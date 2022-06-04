@@ -43,10 +43,12 @@ const PrintResult = (props) => {
     const { cx, cy } = props
     if (props.isCircle)
       return (
-        <path  cx={cx - 5} cy={cy - 5} style={{
-          zIndex:"11",
+        <path cx={cx - 5} cy={cy - 5} opacity={props.opacity ? props.opacity : 1} style={{
           transform: 'translate(' + (cx - 5) + 'px,' + (cy - 5) + 'px)'
-        }} xmlns="http://www.w3.org/2000/svg" d="M4.69901 8.76546C3.61918 8.76546 2.58356 8.33657 1.81991 7.5731C1.05625 6.80964 0.627101 5.77413 0.626831 4.6943C0.626561 3.61446 1.05519 2.57873 1.81847 1.81489C2.58174 1.05104 3.61714 0.621634 4.69698 0.621094C5.77681 0.620554 6.81265 1.04893 7.57668 1.81201C8.34072 2.57509 8.77039 3.61039 8.7712 4.69022C8.77201 5.77006 8.34389 6.806 7.581 7.57023C6.81811 8.33445 5.78292 8.76438 4.70309 8.76546H4.69901Z" fill='white' strokeWidth={"2"} stroke="#E6234A" />
+        }} xmlns="http://www.w3.org/2000/svg" d="M4.69901 8.76546C3.61918 8.76546 2.58356 8.33657 1.81991 7.5731C1.05625 6.80964 0.627101 5.77413 0.626831 4.6943C0.626561 3.61446 1.05519 2.57873 1.81847 1.81489C2.58174 1.05104 3.61714 0.621634 4.69698 0.621094C5.77681 0.620554 6.81265 1.04893 7.57668 1.81201C8.34072 2.57509 8.77039 3.61039 8.7712 4.69022C8.77201 5.77006 8.34389 6.806 7.581 7.57023C6.81811 8.33445 5.78292 8.76438 4.70309 8.76546H4.69901Z"
+          stroke={props.color ? props.color : '#E6234A'}
+          strokeWidth={"2"}
+          fill="white" />
       )
     return (
       // <path
@@ -60,9 +62,10 @@ const PrintResult = (props) => {
       //   fill='#A91674'
       // />
 
-      <path cx={cx - 5} cy={cy - 5} style={{
+      <path cx={cx - 5} cy={cy - 5}  opacity={props.opacity ? props.opacity : 1} style={{
         transform: 'translate(' + (cx - 5) + 'px,' + (cy - 5) + 'px)'
-      }} xmlns="http://www.w3.org/2000/svg" d="M7.90499 0.357932L4.99999 3.26309C4.03171 2.29512 3.06312 1.32621 2.09468 0.357932C0.974365 -0.76238 -0.762198 0.974807 0.357177 2.09543C1.32577 3.06309 2.29468 4.03215 3.26218 5.00043C2.29423 5.96916 1.3259 6.93749 0.357177 7.90543C-0.762198 9.02543 0.974521 10.7622 2.09468 9.64293C3.06296 8.67434 4.03155 7.70559 4.99983 6.73762L7.90483 9.64293C9.02515 10.7629 10.7622 9.02559 9.64233 7.90543C8.67374 6.93684 7.70546 5.96856 6.73655 5.00012C7.7053 4.03153 8.67358 3.06293 9.64233 2.09449C10.7623 0.974807 9.0253 -0.76238 7.90483 0.358557" fill="#A91674" />
+      }} xmlns="http://www.w3.org/2000/svg" d="M7.90499 0.357932L4.99999 3.26309C4.03171 2.29512 3.06312 1.32621 2.09468 0.357932C0.974365 -0.76238 -0.762198 0.974807 0.357177 2.09543C1.32577 3.06309 2.29468 4.03215 3.26218 5.00043C2.29423 5.96916 1.3259 6.93749 0.357177 7.90543C-0.762198 9.02543 0.974521 10.7622 2.09468 9.64293C3.06296 8.67434 4.03155 7.70559 4.99983 6.73762L7.90483 9.64293C9.02515 10.7629 10.7622 9.02559 9.64233 7.90543C8.67374 6.93684 7.70546 5.96856 6.73655 5.00012C7.7053 4.03153 8.67358 3.06293 9.64233 2.09449C10.7623 0.974807 9.0253 -0.76238 7.90483 0.358557"
+        fill={props.color ? props.color : "#A91674"} />
     )
   }
   const CustomBoneLEftDot = props => {
@@ -82,12 +85,14 @@ const PrintResult = (props) => {
 
       <path
         cx={cx - 10}
+        
         cy={cy - 10}
+        opacity={props.opacity}
         style={{
           transform: 'translate(' + (cx - 10) + 'px,' + (cy - 11) + 'px)'
         }}
         xmlns='http://www.w3.org/2000/svg'
-        fill='#A91674'
+        fill={props.color?props.color:'#A91674'}
         d='M 13.83 19 a 1 1 0 0 1 -0.78 -0.37 l -4.83 -6 a 1 1 0 0 1 0 -1.27 l 5 -6 a 1 1 0 0 1 1.54 1.28 L 10.29 12 l 4.32 5.36 a 1 1 0 0 1 -0.78 1.64 Z'
       />
     )
@@ -102,8 +107,9 @@ const PrintResult = (props) => {
         style={{
           transform: 'translate(' + (cx - 15) + 'px,' + (cy - 12) + 'px) '
         }}
+        opacity={props.opacity}
         xmlns='http://www.w3.org/2000/svg'
-        fill='#E6234A'
+        fill={props.color?props.color:'#E6234A'}
         d='M 15.54 11.29 L 9.88 5.64 a 1 1 0 0 0 -1.42 0 a 1 1 0 0 0 0 1.41 l 4.95 5 L 8.46 17 a 1 1 0 0 0 0 1.41 a 1 1 0 0 0 0.71 0.3 a 1 1 0 0 0 0.71 -0.3 l 5.66 -5.65 A 1 1 0 0 0 15.54 11.29 Z'
       />
     )
@@ -344,7 +350,20 @@ const PrintResult = (props) => {
     }
   }
   const ref = useRef(null)
-  const getColor = sideState => {
+  const getColor = (sideState,isMarker=false) => {
+    if(isMarker){
+      switch (sideState) {
+        case 1: {
+          return '#259104' //'rgba(21,237,165,0.7)'
+        }
+        case 2: {
+          return '#b3a909'
+        }
+        case 3: {
+          return '#b30707'
+        }
+      }
+    }
     switch (sideState) {
       case 1: {
         return '#88f567' //'rgba(21,237,165,0.7)'
@@ -353,7 +372,7 @@ const PrintResult = (props) => {
         return '#ede334'
       }
       case 3: {
-        return 'rgba(237,36,36,0.7)'
+        return '#f76a6a'
       }
     }
   }
@@ -481,11 +500,17 @@ const PrintResult = (props) => {
                         dataKey='uv'
                         style={{zIndex:"11"}}
                         isAnimationActive={false}
-                        stroke='#E6234A'
-                        fillOpacity={0.8}
+                        stroke={getColor(
+                          props.isLeft ? states.stateL : states.stateR
+                        )}
+                        fillOpacity={0.1}
                         fill={`url(#colorUv${props.isLeft ? 'left' : 'right'})`}
                         strokeOpacity={1}
-                        dot={props.isLeft ? <CustomDot /> : <CustomDot isCircle={true} />}
+                        dot={props.isLeft ? <CustomDot  color={getColor(
+                          props.isLeft ? states.stateL : states.stateR,true
+                        )}/> : <CustomDot isCircle={true}  color={getColor(
+                          props.isLeft ? states.stateL : states.stateR,true
+                        )} />}
                       />
                     )}
                   {(personalIntrest.test_mode == 'bone' ||
@@ -494,16 +519,23 @@ const PrintResult = (props) => {
                         type={'linear'}
                         dataKey='bone_uv'
                         isAnimationActive={false}
-                        stroke='#A91674'
-                        fillOpacity={0.8}
+                        stroke={getColor(
+                          props.isLeft ? states.stateBoneL : states.stateBoneR
+                        )}
+                        
+                        fillOpacity={0.1}
                         style={{zIndex:"11"}}
                         fill={`url(#colorUvBone${props.isLeft ? 'left' : 'right'})`}
                         strokeOpacity={1}
                         dot={
                           props.isLeft ? (
-                            <CustomBoneLEftDot />
+                            <CustomBoneLEftDot  color={getColor(
+                              props.isLeft ? states.stateBoneL : states.stateBoneR,true
+                            )} />
                           ) : (
-                            <CustomBoneRightDot />
+                            <CustomBoneRightDot  color={getColor(
+                              props.isLeft ? states.stateBoneL : states.stateBoneR,true
+                            )} />
                           )
                         }
                       />
@@ -668,7 +700,7 @@ const PrintResult = (props) => {
     <>
 
       <div className='df row result-box bg-2-light df column row-center' style={{ overflowX: "hidden" }}>
-        <div className='container mt-2 border-2-primary border-2-primary-thin radius-0 pl-1 pr-1 pt-2 pb-2 mb-2'>
+        <div className='container border-2-primary border-2-primary-thin radius-0 pl-1 pr-1 pt-2 pb-2 mb-2'>
           <div className="df row row-center" style={{ flexWrap: "wrap" }}>
             <div className="flex-1  df column row-center">
               <div className='df row row-center mb-3'>
@@ -694,7 +726,7 @@ const PrintResult = (props) => {
           </div>
         </div>
 
-        <div className='container  column df mt-2 border-2-primary border-2-primary-thin radius-0 pl-1 pr-1 pt-2 pb-2 mb-2'>
+        <div className='container  column df border-2-primary border-2-primary-thin radius-0 pl-1 pr-1 pt-2 pb-2 mb-2'>
           <div className='df row'>
             <div className='df border-2-primary flex-1 column row-center' style={{ borderLeft: "none", borderTop: "none", borderBottom: "none" }}>
               <div className='df  row center'>
@@ -739,7 +771,7 @@ const PrintResult = (props) => {
         </div>
         {(personalIntrest.test_mode == 'ear' ||
           personalIntrest.test_mode == 'both') &&
-          <div className='container center column df mt-2 border-2-primary border-2-primary-thin radius-0 pl-1 pr-1 pt-2 pb-2 mb-2'>
+          <div className='container center column df  border-2-primary border-2-primary-thin radius-0 pl-1 pr-1 pt-2 pb-2 mb-2'>
             <h3 className='h4 font-intern text-2-primary mb-2'>AC Hearing Analysis</h3>
 
             <div className='df row' style={{ flexWrap: "wrap" }} >
@@ -767,7 +799,7 @@ const PrintResult = (props) => {
           </div>}
 
         {(personalIntrest.test_mode == 'bone' ||
-          personalIntrest.test_mode == 'both') && <div className='container center column df mt-2 border-2-primary border-2-primary-thin radius-0 pl-1 pr-1 pt-2 pb-2 mb-2'>
+          personalIntrest.test_mode == 'both') && <div className='container center column df border-2-primary border-2-primary-thin radius-0 pl-1 pr-1 pt-2 pb-2 mb-2'>
             <h3 className='h4 font-intern text-2-primary mb-2'>BC Hearing Analysis</h3>
 
             <div className='df row' style={{ flexWrap: "wrap" }}>
@@ -795,10 +827,10 @@ const PrintResult = (props) => {
 
 
 
-        <div className='container row row-center  df mt-2 border-2-primary border-2-primary-thin radius-0 pl-1 pr-1 pt-1 pb-1 mb-2'>
+        <div className='container row row-center  df  border-2-primary border-2-primary-thin radius-0 pl-1 pr-1 pt-2 pb-2 mb-2'>
           <div className='df pr-1 center' style={{ minWidth: '260px' }}>
             <CircularProgressBar
-              size={'260'}
+              size={'230'}
               progress={Math.round((earTestData.snr * 100) / 12)}
               //earTestData.snr
               strokeWidth={'15'}
