@@ -61,7 +61,7 @@ const Result = (props) => {
       //   fill='#A91674'
       // />
 
-      <path cx={cx - 5} cy={cy - 5}  opacity={props.opacity ? props.opacity : 1} style={{
+      <path cx={cx - 5} cy={cy - 5} opacity={props.opacity ? props.opacity : 1} style={{
         transform: 'translate(' + (cx - 5) + 'px,' + (cy - 5) + 'px)'
       }} xmlns="http://www.w3.org/2000/svg" d="M7.90499 0.357932L4.99999 3.26309C4.03171 2.29512 3.06312 1.32621 2.09468 0.357932C0.974365 -0.76238 -0.762198 0.974807 0.357177 2.09543C1.32577 3.06309 2.29468 4.03215 3.26218 5.00043C2.29423 5.96916 1.3259 6.93749 0.357177 7.90543C-0.762198 9.02543 0.974521 10.7622 2.09468 9.64293C3.06296 8.67434 4.03155 7.70559 4.99983 6.73762L7.90483 9.64293C9.02515 10.7629 10.7622 9.02559 9.64233 7.90543C8.67374 6.93684 7.70546 5.96856 6.73655 5.00012C7.7053 4.03153 8.67358 3.06293 9.64233 2.09449C10.7623 0.974807 9.0253 -0.76238 7.90483 0.358557"
         fill={props.color ? props.color : "#A91674"} />
@@ -84,14 +84,14 @@ const Result = (props) => {
 
       <path
         cx={cx - 10}
-        
+
         cy={cy - 10}
         opacity={props.opacity}
         style={{
           transform: 'translate(' + (cx - 10) + 'px,' + (cy - 11) + 'px)'
         }}
         xmlns='http://www.w3.org/2000/svg'
-        fill={props.color?props.color:'#A91674'}
+        fill={props.color ? props.color : '#A91674'}
         d='M 13.83 19 a 1 1 0 0 1 -0.78 -0.37 l -4.83 -6 a 1 1 0 0 1 0 -1.27 l 5 -6 a 1 1 0 0 1 1.54 1.28 L 10.29 12 l 4.32 5.36 a 1 1 0 0 1 -0.78 1.64 Z'
       />
     )
@@ -108,7 +108,7 @@ const Result = (props) => {
         }}
         opacity={props.opacity}
         xmlns='http://www.w3.org/2000/svg'
-        fill={props.color?props.color:'#E6234A'}
+        fill={props.color ? props.color : '#E6234A'}
         d='M 15.54 11.29 L 9.88 5.64 a 1 1 0 0 0 -1.42 0 a 1 1 0 0 0 0 1.41 l 4.95 5 L 8.46 17 a 1 1 0 0 0 0 1.41 a 1 1 0 0 0 0.71 0.3 a 1 1 0 0 0 0.71 -0.3 l 5.66 -5.65 A 1 1 0 0 0 15.54 11.29 Z'
       />
     )
@@ -413,8 +413,8 @@ const Result = (props) => {
     }
   }
   const ref = useRef(null)
-  const getColor = (sideState,isMarker=false) => {
-    if(isMarker){
+  const getColor = (sideState, isMarker = false) => {
+    if (isMarker) {
       switch (sideState) {
         case 1: {
           return '#259104' //'rgba(21,237,165,0.7)'
@@ -506,6 +506,10 @@ const Result = (props) => {
         <div className='df column row'>
 
           <div className='df flex-end row-center pt-2 '>
+            {(personalIntrest.test_mode == 'both') && <button className='df pointer row-center pl-3 pr-3 pt-4 pb-4 mr-2 border-2-primary radius-2' style={{ borderWidth: active == "" ? '2px' : '1px', zIndex: 1 }} onClick={() => { setActive('') }}>
+              <span style={{ zIndex: "0" }} className='h7 font-intern df '>{'BOTH'}</span>
+
+            </button>}
             {(personalIntrest.test_mode == 'both' || personalIntrest.test_mode == 'ear') && <button className='df pointer row-center pl-3 pr-3 pt-4 pb-4 mr-2 border-2-primary radius-2' style={{ borderWidth: active == "ear" ? '2px' : '1px', zIndex: 1 }} onClick={() => { setActive('ear') }}>
               <span style={{ zIndex: "0" }} className='h7 font-intern df mr-3 '>{'AC'}</span>
 
@@ -534,11 +538,14 @@ const Result = (props) => {
               </svg>
             </button>}
 
+
+
+
           </div>
 
           <div
             className='df chart-area center fit-content chart-container p-primary'
-            style={{ minHeight: '500px', marginTop: "-5%", paddingRight: '2.083vw' }}
+            style={{ minHeight: '60vh', marginTop: "-5%", paddingRight: '2.083vw' }}
           >
             {
               <ResponsiveContainer width='100%' height='85%' className='row'>
@@ -609,9 +616,9 @@ const Result = (props) => {
                         fill={`url(#colorUv${props.isLeft ? 'left' : 'right'})`}
                         strokeOpacity={active != 'bone' ? "1" : "0.1"}
                         dot={props.isLeft ? <CustomDot color={getColor(
-                          props.isLeft ? states.stateL : states.stateR,true
+                          props.isLeft ? states.stateL : states.stateR, true
                         )} opacity={active != 'bone' ? "1" : "0.1"} /> : <CustomDot color={getColor(
-                          props.isLeft ? states.stateL : states.stateR,true
+                          props.isLeft ? states.stateL : states.stateR, true
                         )} opacity={active != 'bone' ? "1" : "0.1"} isCircle={true} />}
                       />
                     )}
@@ -632,11 +639,11 @@ const Result = (props) => {
                         dot={
                           props.isLeft ? (
                             <CustomBoneLEftDot color={getColor(
-                              props.isLeft ? states.stateBoneL : states.stateBoneR,true
+                              props.isLeft ? states.stateBoneL : states.stateBoneR, true
                             )} opacity={active != 'ear' ? "0.8" : "0.1"} />
                           ) : (
                             <CustomBoneRightDot color={getColor(
-                              props.isLeft ? states.stateBoneL : states.stateBoneR,true
+                              props.isLeft ? states.stateBoneL : states.stateBoneR, true
                             )} opacity={active != 'ear' ? "0.8" : "0.1"} />
                           )
                         }

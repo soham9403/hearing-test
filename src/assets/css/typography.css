@@ -184,11 +184,6 @@
         border-width: calc(var(--basefont) * 0.2) !important;
     }
 }
-
-@media(max-width:992px){
-    #pdfCreate {
-        --basefont: 23px;
-    }
-
-
+#pdfCreate {
+    --basefont: 23px;
 }

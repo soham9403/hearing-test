@@ -455,6 +455,9 @@ button ,a {
   transition: transform 0.1s linear;
 }
 button:hover ,a:hover {
+  opacity: 0.9;
+}
+button:active ,a:active {
   transform: scale(0.97);
 }
 input[type=number]::-webkit-inner-spin-button,

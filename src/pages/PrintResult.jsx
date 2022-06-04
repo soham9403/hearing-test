@@ -700,7 +700,7 @@ const PrintResult = (props) => {
     <>
 
       <div className='df row result-box bg-2-light df column row-center' style={{ overflowX: "hidden" }}>
-        <div className='container border-2-primary border-2-primary-thin radius-0 pl-1 pr-1 pt-2 pb-2 mb-2'>
+        <div className='container border-2-primary mt-2 border-2-primary-thin radius-0 pl-1 pr-1 pt-2 pb-2 mb-2'>
           <div className="df row row-center" style={{ flexWrap: "wrap" }}>
             <div className="flex-1  df column row-center">
               <div className='df row row-center mb-3'>

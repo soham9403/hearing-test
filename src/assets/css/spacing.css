@@ -197,3 +197,7 @@
     
 
 }
+
+#pdfCreate *{
+    --basespace: 16px;
+}
