@@ -1,6 +1,7 @@
 import { Button, Grid, InputAdornment, OutlinedInput } from "@mui/material"
 import CustomButton from "../components/CustomButton"
 import LoaderImg from '../assets/images/v2/listning-loader.png'
+import DialPadBg from '../assets/images/v2/dial-padbg.png'
 const KeyPadTest = (props) => {
     return (
         <>
@@ -16,17 +17,17 @@ const KeyPadTest = (props) => {
                     <div className="primary-shadow df mb-3 key_pad_container column  radius-0 border-2-primary border-thin" style={{ marginTop: "0px" }}>
 
                         <div className="pl-1 pr-1 pb-3  bg-2-light-gray df  dial-box-row">
-                            <div dangerouslySetInnerHTML={{ __html: props.inputVal.length>0 ?props.inputVal.slice(props.inputVal.length-3, props.inputVal.length-2) :"&nbsp;"}} className="dial-box primary-shadow p-3 bg-2-light text-2-dark bold-2 h4 font-intern pointer df center flex-1 border-thin-primary radius-1">
+                            <div dangerouslySetInnerHTML={{ __html: props.inputVal.length > 0 ? props.inputVal.slice(props.inputVal.length - 3, props.inputVal.length - 2) : "&nbsp;" }} className="dial-box primary-shadow p-3 bg-2-light text-2-dark bold-2 h4 font-intern  df center flex-1 border-thin-primary radius-1">
 
                             </div>
-                            <div dangerouslySetInnerHTML={{ __html:props.inputVal.length>0 ?props.inputVal.slice(props.inputVal.length-2, props.inputVal.length-1) :"&nbsp;"}} className="dial-box primary-shadow p-3 bg-2-light text-2-dark bold-2 h4 font-intern pointer df center flex-1 border-thin-primary radius-1">
+                            <div dangerouslySetInnerHTML={{ __html: props.inputVal.length > 0 ? props.inputVal.slice(props.inputVal.length - 2, props.inputVal.length - 1) : "&nbsp;" }} className="dial-box primary-shadow p-3 bg-2-light text-2-dark bold-2 h4 font-intern  df center flex-1 border-thin-primary radius-1">
 
                             </div>
-                            <div dangerouslySetInnerHTML={{ __html:  props.inputVal.length>0 ?props.inputVal.slice(props.inputVal.length-1, props.inputVal.length):"&nbsp;" }} className="dial-box primary-shadow p-3 bg-2-light text-2-dark bold-2 h4 font-intern pointer df center flex-1 border-thin-primary radius-1">
+                            <div dangerouslySetInnerHTML={{ __html: props.inputVal.length > 0 ? props.inputVal.slice(props.inputVal.length - 1, props.inputVal.length) : "&nbsp;" }} className="dial-box primary-shadow p-3 bg-2-light text-2-dark bold-2 h4 font-intern  df center flex-1 border-thin-primary radius-1">
 
                             </div>
                         </div>
-                        <div className="pl-1 pr-1 pb-3 pt-3 df dial-box-row">
+                        <div className="pl-1 pr-1 pb-3 pt-3 df dial-box-row main-dial-pad">
                             <button onClick={() => { if (props.inputVal.length < 3) { props.setInputVal(props.inputVal.toString() + "1") } }} className="dial-box primary-shadow p-3 text-2-primary bold-2 h4 font-intern pointer df center flex-1 border-thin-primary radius-1">
                                 1
                             </button>
@@ -81,7 +82,7 @@ const KeyPadTest = (props) => {
                         {props.level !== -1 && <>
 
 
-                            <div className="df flex-1 column center">
+                            <div className="df flex-1 column center" style={{ marginTop: "0px" }}>
                                 {/* <div className="mb-3">
                                     <button className="pl-2 pr-2 pt-3 df row-center pb-3 bg-2-primary h5 radius-1 text-2-light pointer" onClick={() => { props.replay() }} >
                                         <svg xmlns="http://www.w3.org/2000/svg" className="reply-svg" viewBox="0 0 30 30" fill="none">
@@ -91,6 +92,9 @@ const KeyPadTest = (props) => {
                                         &nbsp;&nbsp;Replay &nbsp;&nbsp;&nbsp;
                                     </button>
                                 </div> */}
+                                <div className="df flex-1 mb-2">
+                                    <img src={DialPadBg} style={{objectFit:"contain"}} className="df row" alt="" />
+                                </div>
                                 <div className="mb-3">
                                     <button className="pl-2 pr-2 pt-3 df row-center pb-3 bg-2-primary h5 radius-1 text-2-light pointer" onClick={() => { props.notHeard() }} text="Not heard">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="reply-svg" viewBox="0 0 36 36" fill="none">

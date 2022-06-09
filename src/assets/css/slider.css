@@ -34,12 +34,12 @@
     width: 0.139vw;
 }
 .slider-labels{
-    margin-top: -1.667vw;
+    /* margin-top: -1.667vw; */
     
     cursor: pointer;
     position: relative;
     z-index: 11;
 }
-.slider-labels-btn{
-    padding-top: 1.667vw;
+.slider-labels-btn span{
+    transform: translateX(50%);
 }

@@ -67,18 +67,21 @@
 
 .dial-box-row {
     margin-right: -10%;
-    flex: 1;
+    
     flex-wrap: wrap;
 }
 
 .dial-box {
-
     flex-basis: 23%;
-    transition: all 0.2s linear;
+    transition: all 0.1s linear;
     margin: 4% 10% 0% 0%;
+    box-shadow: none !important;
 
 }
-
+.main-dial-pad .dial-box:hover{
+    background-color:var(--color-primary);
+    color:var(--color-light);
+}
 .dial-box-long {
     flex-basis: 40%;
     transition: transform 0.2s linear;

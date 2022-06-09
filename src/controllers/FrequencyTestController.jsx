@@ -35,8 +35,10 @@ const FrequencyTestController = props => {
 
   const playTune = () => {
     setPlayState(true)
+   
+    
     try {
-      
+     
       var audioCtx = new AudioContext()
       var gain = audioCtx.createGain()
       var ocs = audioCtx.createOscillator()
@@ -47,18 +49,19 @@ const FrequencyTestController = props => {
       panNode.pan.value = logicCounts.panMode
       gain.connect(panNode)
       panNode.connect(audioCtx.destination)
+      console.log('played',gain.gain.value,ocs.frequency.value,audioCtx.currentTime)
+      console.log(gain)
       ocs.connect(gain)
-      ocs.start()
-      // if(){
-      //   console.log('playing')
-      // }else{
-      //   setError(
-      //     'Oops Something wents Wrong!!! Please restart test. '
-      //   )
-      // }
+      ocs.start(0)
+      
       ocs.stop(audioCtx.currentTime + 2)
       ocs.onended = () => {
+        console.log('ended',gain.gain.value,ocs.frequency.value,audioCtx.currentTime)
+        gain.disconnect()
+        panNode.disconnect()
+        ocs.disconnect()
         setPlayState(false)
+        audioCtx.close()
       }
       
     } catch (e) {
@@ -151,6 +154,8 @@ const FrequencyTestController = props => {
   }
   useEffect(() => {
     playTune()
+    
+
     //console.log(logicCounts)
   }, [logicCounts])
 

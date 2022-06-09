@@ -391,21 +391,22 @@ const Result = (props) => {
 
     // this.setState({ "setState": "working" })
 
-    if (normalL > moderateL && normalL > severeL) {
+    if (normalL >= moderateL && normalL > severeL) {
       stateL = 1
-    } else if (moderateL > normalL && moderateL > severeL) {
+    } else if (moderateL > normalL && moderateL >= severeL) {
       stateL = 2
-    } else if (severeL > normalL && severeL > moderateL) {
+    } else if (severeL >= normalL && severeL >= moderateL) {
       stateL = 3
     }
 
-    if (normalR > moderateR && normalR > severeR) {
+    if (normalR >= moderateR && normalR > severeR) {
       stateR = 1
-    } else if (moderateR > normalR && moderateR > severeR) {
+    } else if (moderateR > normalR && moderateR >= severeR) {
       stateR = 2
-    } else if (severeR > normalR && severeR > moderateR) {
+    } else if (severeR >= normalR && severeR > moderateR) {
       stateR = 3
     }
+    
     return {
       stateR,
       stateL,
@@ -414,6 +415,7 @@ const Result = (props) => {
   }
   const ref = useRef(null)
   const getColor = (sideState, isMarker = false) => {
+    console.log(sideState)
     if (isMarker) {
       switch (sideState) {
         case 1: {

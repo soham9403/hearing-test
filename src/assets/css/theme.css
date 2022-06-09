@@ -1,3 +1,10 @@
+:root {
+    --color-primary: #A91674;
+    --color-secondary: #E6234A;
+    --color-light: #ffffff;
+    --color-dark: #000;
+}
+
 * {
     scrollbar-width: 0px;
 }
@@ -70,6 +77,10 @@
 
 }
 
+.custom-input {
+    transition: all 0.1s linear;
+}
+
 .custom-button:disabled {
     background: gray !important;
     cursor: not-allowed;
@@ -83,6 +94,7 @@
 .border-thin-primary {
     border: calc(calc(var(--basespace) * 0.0625) / 2) solid #A91674;
 }
-.borderd-text{
+
+.borderd-text {
     border-bottom: calc(var(--basespace) * 0.125) solid #A91674;
 }
