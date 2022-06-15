@@ -377,7 +377,7 @@ const Result = (props) => {
   // }
   const ref = useRef(null)
   const getColor = (avg, isMarker = false) => {
-    console.log(avg)
+    //console.log(avg)
     if (avg < 30) {
       return isMarker ? "#3eb848" : "#49f557"
     } else if (avg >= 30 && avg < 50) {
@@ -605,7 +605,7 @@ const Result = (props) => {
 
 
           <div className='df center fit-content column p-primary'>
-            {/* {console.log(personalIntrest.test_mode == 'bone',props.isLeft,personalIntrest.test_mode == 'bone' ? (props.isLeft ? states.stateL : states.stateR):(props.isLeft ? states.stateBoneL : states.stateBoneR))} */}
+            {/* {//console.log(personalIntrest.test_mode == 'bone',props.isLeft,personalIntrest.test_mode == 'bone' ? (props.isLeft ? states.stateL : states.stateR):(props.isLeft ? states.stateBoneL : states.stateBoneR))} */}
             
             {getGraphText(personalIntrest.test_mode == 'bone' ? (props.isLeft ? states.stateBoneL : states.stateBoneR):(props.isLeft ? states.stateL : states.stateR))}
           </div>

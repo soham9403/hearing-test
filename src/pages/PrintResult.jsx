@@ -380,7 +380,7 @@ const PrintResult = (props) => {
   // }
   const ref = useRef(null)
   const getColor = (avg, isMarker = false) => {
-    console.log(avg)
+    //console.log(avg)
     if (avg < 30) {
       return isMarker ? "#3eb848" : "#49f557"
     } else if (avg >= 30 && avg < 50) {
@@ -1184,7 +1184,7 @@ export default PrintResult
 //     }
 //   }
 //   useEffect(() => {
-//     console.log(ref.current)
+//     //console.log(ref.current)
 //   }, [ref])
 
 //   const LeftRightComponent = props => {

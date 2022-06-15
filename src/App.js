@@ -19,7 +19,7 @@ const theme = createTheme({
 })
 function App () {
   const { personalIntrest,earTest } = useSelector(state => state)
-  console.log(earTest)
+  //console.log(earTest)
   return (
     <ThemeProvider theme={theme}>
       <div className='App'>

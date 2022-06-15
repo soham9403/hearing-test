@@ -43,7 +43,7 @@ const FrequencyTestController = props => {
       var audioCtx = new AudioContext()
       var gain = audioCtx.createGain()
       var ocs = audioCtx.createOscillator()
-      console.log(frequncyList[logicCounts.level],logicCounts.level)
+      //console.log(frequncyList[logicCounts.level],logicCounts.level)
       ocs.frequency.value = frequncyList[logicCounts.level]
 
       gain.gain.value = dBFSToGain(logicCounts.dbValue)
@@ -51,14 +51,14 @@ const FrequencyTestController = props => {
       panNode.pan.value = logicCounts.panMode
       gain.connect(panNode)
       panNode.connect(audioCtx.destination)
-      // console.log('played', gain.gain.value, ocs.frequency.value, audioCtx.currentTime)
-      // console.log(gain)
+      // //console.log('played', gain.gain.value, ocs.frequency.value, audioCtx.currentTime)
+      // //console.log(gain)
       ocs.connect(gain)
       ocs.start(0)
 
       ocs.stop(audioCtx.currentTime + 2)
       ocs.onended = () => {
-        // console.log('ended', gain.gain.value, ocs.frequency.value, audioCtx.currentTime)
+        // //console.log('ended', gain.gain.value, ocs.frequency.value, audioCtx.currentTime)
         gain.disconnect()
         panNode.disconnect()
         ocs.disconnect()
@@ -67,7 +67,7 @@ const FrequencyTestController = props => {
       }
 
     } catch (e) {
-      console.log(e.message)
+      //console.log(e.message)
 
       setError(
         'This device/browser is not supporting our test. please use another device/browser '
@@ -160,7 +160,7 @@ const FrequencyTestController = props => {
     playTune()
 
 
-    //console.log(logicCounts)
+    ////console.log(logicCounts)
   }, [logicCounts])
 
   const dBFSToGain = dbfs => {
