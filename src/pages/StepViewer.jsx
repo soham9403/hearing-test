@@ -67,22 +67,30 @@ const StepViewer = () => {
             className='h4 bold-2 text-2-primary center font-intern'
             style={{ lineHeight: '120%' }}
           >
-            In next test different frequencies will be played,
-            <br />
+            In next test different frequencies will be played, you have to
+            <br />click  on Yes or No based on weather you are able to hear sound or not. 
+            <br  />
             {/* you have to set the
             volume from bar when you can hear the sound/ tones barely.  */}
+            <div className="mt-3">
+
+
             This test
             will calculate how your ears respond to different frequencies.
+            </div>
           </p>
         ) : (
           <p
             className='h4 bold-2 text-2-primary center font-intern'
             style={{ lineHeight: '120%' }}
           >
-            In the next test you will hear combination of 3 numbers along with
-            the background noise, you have to write those numbers in box. This
+            In the next test you will hear combination of 3 numbers along <br />
+             with
+            the background noise, you have to write those numbers in box.
+            
+            <span className='df mt-3 center'> This
             will test your ear’s ability to hear human speech in noisy
-            environment.
+            environment.</span> 
           </p>
         )}
       </div>

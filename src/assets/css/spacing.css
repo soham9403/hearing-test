@@ -186,7 +186,7 @@
 }
 @media(max-width:450px) {
     :root {
-        --basespace: 2.667vw;
+        --basespace: 4vw;
         
       }
     .container {

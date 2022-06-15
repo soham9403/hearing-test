@@ -29,17 +29,19 @@
     z-index: 11;
 }
 .vertical-border{
-    border-right: 0.139vw solid #E6234A;
-    height: 1vw;
+    border-right: calc(var(--basefont) * 0.1) solid #E6234A;
+    height: calc(var(--basefont) * 0.7);
     width: 0.139vw;
+    z-index: -1;
 }
 .slider-labels{
-    /* margin-top: -1.667vw; */
-    
+    padding-top: calc(var(--basespace) * 3);
+    margin-top: 0px;
+    z-index: -1;
     cursor: pointer;
     position: relative;
     z-index: 11;
 }
 .slider-labels-btn span{
-    transform: translateX(50%);
+    transform: translateX(-50%);
 }

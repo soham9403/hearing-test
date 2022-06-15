@@ -85,7 +85,8 @@ const PersonalIntrestForm = () => {
                 <div className="p-2 primary-shadow border-2-primary border-2-primary-thin radius-0 row" >
                     <h3 className="h4 text-2-primary mb-2 font-intern bold-2">How many hours do you use your earphone / headphones ?</h3>
                     <div className="df row mb-3 column">
-                        <CustomSlider value={personalIntrest.hours_of_use.indexOf(personalIntrest.selected_hours_of_use)} options={personalIntrest.hours_of_use.map((option, index) => { return { label: personalIntrest.hours_of_use[index], value: index } })}
+                        <CustomSlider value={personalIntrest.hours_of_use.indexOf(personalIntrest.selected_hours_of_use)}
+                            options={personalIntrest.hours_of_use.map((option, index) => { return { label: personalIntrest.hours_of_use[index], value: index } })}
                             onChange={(val) => {
                                 dispatch(changeUseOfHours(personalIntrest.hours_of_use[val]))
                             }} />

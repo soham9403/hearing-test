@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { toast } from 'react-toastify'
 import { setFrequencyVal } from '../actions/EarTestAction'
+import { getFrequencyName } from '../commonfunctions/helper'
 import NotSupportError from '../components/NotSupportError'
 import FrequencyTest from '../pages/FrequencyTest'
 import { rootUrl } from '../routes/RouteIndex'
@@ -28,45 +29,46 @@ const FrequencyTestController = props => {
   const [error, setError] = useState('')
   const [logicCounts, setLogicCounts] = useState({
     dbValue: testData.defaultDb,
-    level: 1,
+    level: 0,
     wrongCounts: 0,
     panMode: device === 'headphone' ? -1 : 0
   })
 
   const playTune = () => {
     setPlayState(true)
-   
-    
+
+
     try {
-     
+
       var audioCtx = new AudioContext()
       var gain = audioCtx.createGain()
       var ocs = audioCtx.createOscillator()
-      ocs.frequency.value = frequncyList[logicCounts.level - 1]
+      console.log(frequncyList[logicCounts.level],logicCounts.level)
+      ocs.frequency.value = frequncyList[logicCounts.level]
 
       gain.gain.value = dBFSToGain(logicCounts.dbValue)
       var panNode = audioCtx.createStereoPanner()
       panNode.pan.value = logicCounts.panMode
       gain.connect(panNode)
       panNode.connect(audioCtx.destination)
-      console.log('played',gain.gain.value,ocs.frequency.value,audioCtx.currentTime)
-      console.log(gain)
+      // console.log('played', gain.gain.value, ocs.frequency.value, audioCtx.currentTime)
+      // console.log(gain)
       ocs.connect(gain)
       ocs.start(0)
-      
+
       ocs.stop(audioCtx.currentTime + 2)
       ocs.onended = () => {
-        console.log('ended',gain.gain.value,ocs.frequency.value,audioCtx.currentTime)
+        // console.log('ended', gain.gain.value, ocs.frequency.value, audioCtx.currentTime)
         gain.disconnect()
         panNode.disconnect()
         ocs.disconnect()
         setPlayState(false)
         audioCtx.close()
       }
-      
+
     } catch (e) {
       console.log(e.message)
-     
+
       setError(
         'This device/browser is not supporting our test. please use another device/browser '
       )
@@ -86,7 +88,9 @@ const FrequencyTestController = props => {
   const canHear = () => {
     const counts = { ...logicCounts }
     var value = counts.dbValue
+
     var level = counts.level
+
     const valueOfFrequency = {}
     if (value === -95 || logicCounts.wrongCounts > 0) {
       let finishState = 0
@@ -98,36 +102,36 @@ const FrequencyTestController = props => {
           panMode: logicCounts.panMode * -1
         })
         mode == 'bone'
-          ? (valueOfFrequency['bone_F' + level + 'L'] = value + 100)
-          : (valueOfFrequency['F' + level + 'L'] = value + 100)
+          ? (valueOfFrequency['bone_F' + frequncyList[level] + 'L'] = value + 100)
+          : (valueOfFrequency['F' + frequncyList[level] + 'L'] = value + 100)
       } else if (logicCounts.panMode === 1) {
         setLogicCounts({
           ...logicCounts,
-          level: level + 1,
+          level: counts.level + 1,
           wrongCounts: 0,
           dbValue: testData.defaultDb,
           panMode: logicCounts.panMode * -1
         })
         mode == 'bone'
-          ? (valueOfFrequency['bone_F' + level + 'R'] = value + 100)
-          : (valueOfFrequency['F' + level + 'R'] = value + 100)
-        if (level === 7) finishState = 1
+          ? (valueOfFrequency['bone_F' + frequncyList[level] + 'R'] = value + 100)
+          : (valueOfFrequency['F' + frequncyList[level] + 'R'] = value + 100)
+        if (level === (frequncyList.length-1)) finishState = 1
       }
       if (logicCounts.panMode === 0) {
         setLogicCounts({
           ...logicCounts,
-          level: level + 1,
+          level: counts.level + 1,
           wrongCounts: 0,
           dbValue: testData.defaultDb,
           panMode: logicCounts.panMode * -1
         })
         mode == 'bone'
-          ? (valueOfFrequency['bone_F' + level + 'L'] = value + 100)
-          : (valueOfFrequency['F' + level + 'L'] = value + 100)
+          ? (valueOfFrequency['bone_F' + frequncyList[level] + 'L'] = value + 100)
+          : (valueOfFrequency['F' + frequncyList[level] + 'L'] = value + 100)
         mode == 'bone'
-          ? (valueOfFrequency['bone_F' + level + 'R'] = value + 100)
-          : (valueOfFrequency['F' + level + 'R'] = value + 100)
-        if (level === 7) finishState = 1
+          ? (valueOfFrequency['bone_F' + frequncyList[level] + 'R'] = value + 100)
+          : (valueOfFrequency['F' + frequncyList[level] + 'R'] = value + 100)
+        if (level === (frequncyList.length-1)) finishState = 1
       }
       dispatch(setFrequencyVal(valueOfFrequency))
       if (finishState === 1) {
@@ -154,7 +158,7 @@ const FrequencyTestController = props => {
   }
   useEffect(() => {
     playTune()
-    
+
 
     //console.log(logicCounts)
   }, [logicCounts])
@@ -162,26 +166,7 @@ const FrequencyTestController = props => {
   const dBFSToGain = dbfs => {
     return Math.pow(10, dbfs / 20)
   }
-  const getFrequencyName = frquencyVal => {
-    switch (frquencyVal) {
-      case 250:
-        return '250'
-      case 500:
-        return '500'
-      case 1000:
-        return '1K'
-      case 2000:
-        return '2K'
-      case 3000:
-        return '3K'
-      case 5000:
-        return '5K'
-      case 8000:
-        return '8K'
-      default:
-        return frquencyVal
-    }
-  }
+
   if (error !== '') {
     return <NotSupportError error={error} />
   } else {

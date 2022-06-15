@@ -8,7 +8,7 @@ const LanguageSelection = (props) => {
     const navigate = useNavigate()
     return (
         <>
-            <h1 className="h2 font-intern mt-1 mb-1 container">SELECT YOUR UNDERSTANDABLE LANGUAGE</h1>
+            <h1 className="h2 font-intern mt-1 mb-1 container center">SELECT YOUR UNDERSTANDABLE LANGUAGE</h1>
 
             <div className="container df column mt-1">
                     <div className="df row center mt-1" style={{flexWrap:"wrap"}}>

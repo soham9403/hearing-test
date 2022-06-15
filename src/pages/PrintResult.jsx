@@ -23,6 +23,8 @@ import Hexagon from '../components/svgs/Heaaxgon'
 import SheetCred from '../config/spreadsheet.json'
 import axios from 'axios'
 import { getGraphText } from '../components/getGraphText'
+import { useLayoutEffect } from 'react'
+import { getFrequencyName } from '../commonfunctions/helper'
 const PrintResult = (props) => {
   const personalDetails = useSelector(state => {
     return state.personalDetails
@@ -62,7 +64,7 @@ const PrintResult = (props) => {
       //   fill='#A91674'
       // />
 
-      <path cx={cx - 5} cy={cy - 5}  opacity={props.opacity ? props.opacity : 1} style={{
+      <path cx={cx - 5} cy={cy - 5} opacity={props.opacity ? props.opacity : 1} style={{
         transform: 'translate(' + (cx - 5) + 'px,' + (cy - 5) + 'px)'
       }} xmlns="http://www.w3.org/2000/svg" d="M7.90499 0.357932L4.99999 3.26309C4.03171 2.29512 3.06312 1.32621 2.09468 0.357932C0.974365 -0.76238 -0.762198 0.974807 0.357177 2.09543C1.32577 3.06309 2.29468 4.03215 3.26218 5.00043C2.29423 5.96916 1.3259 6.93749 0.357177 7.90543C-0.762198 9.02543 0.974521 10.7622 2.09468 9.64293C3.06296 8.67434 4.03155 7.70559 4.99983 6.73762L7.90483 9.64293C9.02515 10.7629 10.7622 9.02559 9.64233 7.90543C8.67374 6.93684 7.70546 5.96856 6.73655 5.00012C7.7053 4.03153 8.67358 3.06293 9.64233 2.09449C10.7623 0.974807 9.0253 -0.76238 7.90483 0.358557"
         fill={props.color ? props.color : "#A91674"} />
@@ -85,14 +87,14 @@ const PrintResult = (props) => {
 
       <path
         cx={cx - 10}
-        
+
         cy={cy - 10}
         opacity={props.opacity}
         style={{
           transform: 'translate(' + (cx - 10) + 'px,' + (cy - 11) + 'px)'
         }}
         xmlns='http://www.w3.org/2000/svg'
-        fill={props.color?props.color:'#A91674'}
+        fill={props.color ? props.color : '#A91674'}
         d='M 13.83 19 a 1 1 0 0 1 -0.78 -0.37 l -4.83 -6 a 1 1 0 0 1 0 -1.27 l 5 -6 a 1 1 0 0 1 1.54 1.28 L 10.29 12 l 4.32 5.36 a 1 1 0 0 1 -0.78 1.64 Z'
       />
     )
@@ -109,7 +111,7 @@ const PrintResult = (props) => {
         }}
         opacity={props.opacity}
         xmlns='http://www.w3.org/2000/svg'
-        fill={props.color?props.color:'#E6234A'}
+        fill={props.color ? props.color : '#E6234A'}
         d='M 15.54 11.29 L 9.88 5.64 a 1 1 0 0 0 -1.42 0 a 1 1 0 0 0 0 1.41 l 4.95 5 L 8.46 17 a 1 1 0 0 0 0 1.41 a 1 1 0 0 0 0.71 0.3 a 1 1 0 0 0 0.71 -0.3 l 5.66 -5.65 A 1 1 0 0 0 15.54 11.29 Z'
       />
     )
@@ -124,258 +126,272 @@ const PrintResult = (props) => {
     setPhi(phitotal)
   }
   const countPhiAndState = (isBone) => {
-    let comparisonMatrix = [
-      [
-        13,
-        15,
-        18,
-        21,
-        25,
-        27,
-        30,
-        35,
-        39,
-        44,
-        50,
-        55,
-        59,
-        67,
-        74,
-        78,
-        81,
-        84,
-        86,
-        90
-      ],
-      [
-        13,
-        15,
-        18,
-        21,
-        25,
-        27,
-        30,
-        35,
-        39,
-        44,
-        50,
-        55,
-        59,
-        67,
-        74,
-        78,
-        81,
-        84,
-        86,
-        90
-      ],
-      [
-        15,
-        18,
-        21,
-        25,
-        27,
-        30,
-        35,
-        39,
-        44,
-        50,
-        55,
-        59,
-        67,
-        74,
-        78,
-        81,
-        84,
-        86,
-        90,
-        92
-      ],
-      [
-        15,
-        18,
-        21,
-        25,
-        27,
-        30,
-        35,
-        39,
-        44,
-        50,
-        55,
-        59,
-        67,
-        74,
-        78,
-        81,
-        84,
-        86,
-        90,
-        92
-      ],
-      [
-        15,
-        18,
-        21,
-        25,
-        27,
-        30,
-        35,
-        39,
-        44,
-        50,
-        55,
-        59,
-        67,
-        74,
-        78,
-        81,
-        84,
-        86,
-        90,
-        92
-      ],
-      [
-        13,
-        15,
-        18,
-        21,
-        25,
-        27,
-        30,
-        35,
-        39,
-        44,
-        50,
-        55,
-        59,
-        67,
-        74,
-        78,
-        81,
-        84,
-        86,
-        90
-      ],
-      [
-        12,
-        13,
-        15,
-        18,
-        21,
-        25,
-        27,
-        30,
-        35,
-        39,
-        44,
-        50,
-        55,
-        59,
-        67,
-        74,
-        78,
-        81,
-        84,
-        86
-      ]
-    ]
-    let leftAge = 0
-    let rightAge = 0
+
     const leftData =
       isBone ? dataBONELeft : dataLeft
     const rightData =
       isBone ? dataBONERight : dataRight
-    var normalL = 0,
-      moderateL = 0,
-      severeL = 0
-    var normalR = 0,
-      moderateR = 0,
-      severeR = 0
 
-    for (var i = 0; i < 7; i++) {
-      var dbValLeft = leftData[i].uv / 5 - 1
-      var dbValRight = rightData[i].uv / 5 - 1
-      if (leftData[i].uv < 30) {
-        normalL++
-      } else if (leftData[i].uv < 70) {
-        moderateL++
-      } else {
-        severeL++
-      }
+    let stateR, stateL, phitotal = 0;
 
-      if (rightData[i].uv < 30) {
-        normalR++
-      } else if (rightData[i].uv < 70) {
-        moderateR++
-      } else {
-        severeR++
-      }
+    let sumLeft = 0
+    let sumRight = 0
+    const len = leftData.length
+    for (let i = 0; i < len; i++) {
 
-      leftAge += comparisonMatrix[i][dbValLeft]
-      rightAge += comparisonMatrix[i][dbValRight]
+      sumLeft += leftData[i].uv
+      sumRight += rightData[i].uv
     }
+    stateL = sumLeft / len
+    stateR = sumRight / len
 
-    let ageLeft = Math.round(leftAge / 7)
-    let ageRight = Math.round(rightAge / 7)
-    let phiLeft = 60 - (ageLeft - parseInt(personalDetails.age)) * 2
-    let phiRight = 60 - (ageRight - parseInt(personalDetails.age)) * 2
-    let phitotal = (phiLeft + phiRight) / 2
-    let earLossAgeLeft = 64 - (60 - phiLeft) / 2
-    let earLossAgeRight = 64 - (60 - phiRight) / 2
-    var stateR = 0
-    var stateL = 0
-
-    // this.setState({ "setState": "working" })
-
-    if (normalL >= moderateL && normalL > severeL) {
-      stateL = 1
-    } else if (moderateL > normalL && moderateL >= severeL) {
-      stateL = 2
-    } else if (severeL >= normalL && severeL >= moderateL) {
-      stateL = 3
-    }
-
-    if (normalR >= moderateR && normalR > severeR) {
-      stateR = 1
-    } else if (moderateR > normalR && moderateR >= severeR) {
-      stateR = 2
-    } else if (severeR >= normalR && severeR > moderateR) {
-      stateR = 3
-    }
     return {
-      stateR,
       stateL,
+      stateR,
       phitotal
     }
   }
+  // const countPhiAndState = (isBone) => {
+  //   let comparisonMatrix = [
+  //     [
+  //       13,
+  //       15,
+  //       18,
+  //       21,
+  //       25,
+  //       27,
+  //       30,
+  //       35,
+  //       39,
+  //       44,
+  //       50,
+  //       55,
+  //       59,
+  //       67,
+  //       74,
+  //       78,
+  //       81,
+  //       84,
+  //       86,
+  //       90
+  //     ],
+  //     [
+  //       13,
+  //       15,
+  //       18,
+  //       21,
+  //       25,
+  //       27,
+  //       30,
+  //       35,
+  //       39,
+  //       44,
+  //       50,
+  //       55,
+  //       59,
+  //       67,
+  //       74,
+  //       78,
+  //       81,
+  //       84,
+  //       86,
+  //       90
+  //     ],
+  //     [
+  //       15,
+  //       18,
+  //       21,
+  //       25,
+  //       27,
+  //       30,
+  //       35,
+  //       39,
+  //       44,
+  //       50,
+  //       55,
+  //       59,
+  //       67,
+  //       74,
+  //       78,
+  //       81,
+  //       84,
+  //       86,
+  //       90,
+  //       92
+  //     ],
+  //     [
+  //       15,
+  //       18,
+  //       21,
+  //       25,
+  //       27,
+  //       30,
+  //       35,
+  //       39,
+  //       44,
+  //       50,
+  //       55,
+  //       59,
+  //       67,
+  //       74,
+  //       78,
+  //       81,
+  //       84,
+  //       86,
+  //       90,
+  //       92
+  //     ],
+  //     [
+  //       15,
+  //       18,
+  //       21,
+  //       25,
+  //       27,
+  //       30,
+  //       35,
+  //       39,
+  //       44,
+  //       50,
+  //       55,
+  //       59,
+  //       67,
+  //       74,
+  //       78,
+  //       81,
+  //       84,
+  //       86,
+  //       90,
+  //       92
+  //     ],
+  //     [
+  //       13,
+  //       15,
+  //       18,
+  //       21,
+  //       25,
+  //       27,
+  //       30,
+  //       35,
+  //       39,
+  //       44,
+  //       50,
+  //       55,
+  //       59,
+  //       67,
+  //       74,
+  //       78,
+  //       81,
+  //       84,
+  //       86,
+  //       90
+  //     ],
+  //     [
+  //       12,
+  //       13,
+  //       15,
+  //       18,
+  //       21,
+  //       25,
+  //       27,
+  //       30,
+  //       35,
+  //       39,
+  //       44,
+  //       50,
+  //       55,
+  //       59,
+  //       67,
+  //       74,
+  //       78,
+  //       81,
+  //       84,
+  //       86
+  //     ]
+  //   ]
+  //   let leftAge = 0
+  //   let rightAge = 0
+  //   const leftData =
+  //     isBone ? dataBONELeft : dataLeft
+  //   const rightData =
+  //     isBone ? dataBONERight : dataRight
+  //   var normalL = 0,
+  //     moderateL = 0,
+  //     severeL = 0
+  //   var normalR = 0,
+  //     moderateR = 0,
+  //     severeR = 0
+
+  //   for (var i = 0; i < 7; i++) {
+  //     var dbValLeft = leftData[i].uv / 5 - 1
+  //     var dbValRight = rightData[i].uv / 5 - 1
+  //     if (leftData[i].uv < 30) {
+  //       normalL++
+  //     } else if (leftData[i].uv < 70) {
+  //       moderateL++
+  //     } else {
+  //       severeL++
+  //     }
+
+  //     if (rightData[i].uv < 30) {
+  //       normalR++
+  //     } else if (rightData[i].uv < 70) {
+  //       moderateR++
+  //     } else {
+  //       severeR++
+  //     }
+
+  //     leftAge += comparisonMatrix[i][dbValLeft]
+  //     rightAge += comparisonMatrix[i][dbValRight]
+  //   }
+
+  //   let ageLeft = Math.round(leftAge / 7)
+  //   let ageRight = Math.round(rightAge / 7)
+  //   let phiLeft = 60 - (ageLeft - parseInt(personalDetails.age)) * 2
+  //   let phiRight = 60 - (ageRight - parseInt(personalDetails.age)) * 2
+  //   let phitotal = (phiLeft + phiRight) / 2
+  //   let earLossAgeLeft = 64 - (60 - phiLeft) / 2
+  //   let earLossAgeRight = 64 - (60 - phiRight) / 2
+  //   var stateR = 0
+  //   var stateL = 0
+
+  //   // this.setState({ "setState": "working" })
+
+  //   if (normalL >= moderateL && normalL > severeL) {
+  //     stateL = 1
+  //   } else if (moderateL > normalL && moderateL >= severeL) {
+  //     stateL = 2
+  //   } else if (severeL >= normalL && severeL >= moderateL) {
+  //     stateL = 3
+  //   }
+
+  //   if (normalR >= moderateR && normalR > severeR) {
+  //     stateR = 1
+  //   } else if (moderateR > normalR && moderateR >= severeR) {
+  //     stateR = 2
+  //   } else if (severeR >= normalR && severeR > moderateR) {
+  //     stateR = 3
+  //   }
+
+  //   return {
+  //     stateR,
+  //     stateL,
+  //     phitotal
+  //   }
+  // }
   const ref = useRef(null)
-  const getColor = (sideState,isMarker=false) => {
-    if(isMarker){
-      switch (sideState) {
-        case 1: {
-          return '#259104' //'rgba(21,237,165,0.7)'
-        }
-        case 2: {
-          return '#b3a909'
-        }
-        case 3: {
-          return '#b30707'
-        }
-      }
-    }
-    switch (sideState) {
-      case 1: {
-        return '#88f567' //'rgba(21,237,165,0.7)'
-      }
-      case 2: {
-        return '#ede334'
-      }
-      case 3: {
-        return '#f76a6a'
-      }
+  const getColor = (avg, isMarker = false) => {
+    console.log(avg)
+    if (avg < 30) {
+      return isMarker ? "#3eb848" : "#49f557"
+    } else if (avg >= 30 && avg < 50) {
+      return isMarker ? "#f0e962" : "#ebe017"
+    } else if (avg >= 50 && avg < 85) {
+      return isMarker ? "#a10505" : "#eb3d3d"
+    } else {
+      return isMarker ? "#a10505" : "#ff0808"
     }
   }
+
 
 
   const getAverage = (data) => {
@@ -461,11 +477,11 @@ const PrintResult = (props) => {
                       </linearGradient>}
 
 
-                   
+
 
                   </defs>
                   <defs>
-                  {(personalIntrest.test_mode == 'bone' ||
+                    {(personalIntrest.test_mode == 'bone' ||
                       personalIntrest.test_mode == 'both') &&
                       <linearGradient id={`colorUvBone${props.isLeft ? 'left' : 'right'}`} gradientTransform="rotate(0, 0.5, 0.5)" x1="50%" y1="10%" x2="50%" y2="90%" >
 
@@ -498,7 +514,7 @@ const PrintResult = (props) => {
                       <Area
                         type={'linear'}
                         dataKey='uv'
-                        style={{zIndex:"11"}}
+                        style={{ zIndex: "11" }}
                         isAnimationActive={false}
                         stroke={getColor(
                           props.isLeft ? states.stateL : states.stateR
@@ -506,10 +522,10 @@ const PrintResult = (props) => {
                         fillOpacity={0.1}
                         fill={`url(#colorUv${props.isLeft ? 'left' : 'right'})`}
                         strokeOpacity={1}
-                        dot={props.isLeft ? <CustomDot  color={getColor(
-                          props.isLeft ? states.stateL : states.stateR,true
-                        )}/> : <CustomDot isCircle={true}  color={getColor(
-                          props.isLeft ? states.stateL : states.stateR,true
+                        dot={props.isLeft ? <CustomDot color={getColor(
+                          props.isLeft ? states.stateL : states.stateR, true
+                        )} /> : <CustomDot isCircle={true} color={getColor(
+                          props.isLeft ? states.stateL : states.stateR, true
                         )} />}
                       />
                     )}
@@ -522,19 +538,19 @@ const PrintResult = (props) => {
                         stroke={getColor(
                           props.isLeft ? states.stateBoneL : states.stateBoneR
                         )}
-                        
+
                         fillOpacity={0.1}
-                        style={{zIndex:"11"}}
+                        style={{ zIndex: "11" }}
                         fill={`url(#colorUvBone${props.isLeft ? 'left' : 'right'})`}
                         strokeOpacity={1}
                         dot={
                           props.isLeft ? (
-                            <CustomBoneLEftDot  color={getColor(
-                              props.isLeft ? states.stateBoneL : states.stateBoneR,true
+                            <CustomBoneLEftDot color={getColor(
+                              props.isLeft ? states.stateBoneL : states.stateBoneR, true
                             )} />
                           ) : (
-                            <CustomBoneRightDot  color={getColor(
-                              props.isLeft ? states.stateBoneL : states.stateBoneR,true
+                            <CustomBoneRightDot color={getColor(
+                              props.isLeft ? states.stateBoneL : states.stateBoneR, true
                             )} />
                           )
                         }
@@ -547,7 +563,7 @@ const PrintResult = (props) => {
 
 
           <div className='df center fit-content column p-primary'>
-            {getGraphText(props.isLeft ? states.stateL : states.stateR)}
+            {getGraphText(personalIntrest.test_mode == 'bone' ? (props.isLeft ? states.stateBoneL : states.stateBoneR) : (props.isLeft ? states.stateL : states.stateR))}
           </div>
         </div>
         {/* <h1 style={{height:"10px",widht:"10px",background:"red"}} ref={ref}></h1> */}
@@ -555,147 +571,126 @@ const PrintResult = (props) => {
       </>
     )
   }
-
+  const frequencyArr = earTestData.frequencyList
+  let frequencyArrSorted = []
   useEffect(() => {
     initialize()
   }, [])
-  const dataLeft = [
-    {
-      name: '250',
-      uv: earTestData.F1L,
-      bone_uv: earTestData.bone_F1L
-    },
-    {
-      name: '500',
-      uv: earTestData.F2L,
-      bone_uv: earTestData.bone_F2L
-    },
-    {
-      name: '1K',
-      uv: earTestData.F3L,
-      bone_uv: earTestData.bone_F3L
-    },
-    {
-      name: '2K',
-      uv: earTestData.F4L,
-      bone_uv: earTestData.bone_F4L
-    },
-    {
-      name: '3K',
-      uv: earTestData.F5L,
-      bone_uv: earTestData.bone_F5L
-    },
-    {
-      name: '5K',
-      uv: earTestData.F6L,
-      bone_uv: earTestData.bone_F6L
-    },
-    {
-      name: '8K',
-      uv: earTestData.F7L,
-      bone_uv: earTestData.bone_F7L
-    }
-  ]
+  useLayoutEffect(() => {
+    frequencyArr.splice(4, 1)
+  }, [])
+  const dataLeft = frequencyArr.map((value, index) => {
 
-  const dataRight = [
-    {
-      name: '250',
-      uv: earTestData.F1R,
-      bone_uv: earTestData.bone_F1R
-    },
-    {
-      name: '500',
-      uv: earTestData.F2R,
-      bone_uv: earTestData.bone_F2R
-    },
-    {
-      name: '1K',
-      uv: earTestData.F3R,
-      bone_uv: earTestData.bone_F3R
-    },
-    {
-      name: '2K',
-      uv: earTestData.F4R,
-      bone_uv: earTestData.bone_F4R
-    },
-    {
-      name: '3K',
-      uv: earTestData.F5R,
-      bone_uv: earTestData.bone_F5R
-    },
-    {
-      name: '5K',
-      uv: earTestData.F6R,
-      bone_uv: earTestData.bone_F6R
-    },
-    {
-      name: '8K',
-      uv: earTestData.F7R,
-      bone_uv: earTestData.bone_F7R
-    }
-  ]
+    return {
+      name: getFrequencyName(value),
+      originalVal: value,
 
-  const dataBONELeft = [
-    {
-      name: '250',
-      uv: earTestData.bone_F1L
-    },
-    {
-      name: '500',
-      uv: earTestData.bone_F2L
-    },
-    {
-      name: '1K',
-      uv: earTestData.bone_F3L
-    },
-    {
-      name: '2K',
-      uv: earTestData.bone_F4L
-    },
-    {
-      name: '3K',
-      uv: earTestData.bone_F5L
-    },
-    {
-      name: '5K',
-      uv: earTestData.bone_F6L
-    },
-    {
-      name: '8K',
-      uv: earTestData.bone_F7L
+      uv: earTestData['F' + value + 'L'],
+      bone_uv: earTestData['bone_F' + value + 'L']
     }
-  ]
+  }).sort(
+    function (a, b) {
+      const keyA = parseInt(a.originalVal)
+      const keyB = parseInt(b.originalVal)
+      // Compare the 2 dates
+      if (keyA < keyB) return -1;
+      if (keyA > keyB) return 1;
+      return 0;
+    }
+  )
+  // [
+  //   {
+  //     name: '250',
+  //     uv: earTestData.F1L,
+  //     bone_uv: earTestData.bone_F1L
+  //   },
+  //   {
+  //     name: '500',
+  //     uv: earTestData.F2L,
+  //     bone_uv: earTestData.bone_F2L
+  //   },
+  //   {
+  //     name: '1K',
+  //     uv: earTestData.F3L,
+  //     bone_uv: earTestData.bone_F3L
+  //   },
+  //   {
+  //     name: '2K',
+  //     uv: earTestData.F4L,
+  //     bone_uv: earTestData.bone_F4L
+  //   },
+  //   {
+  //     name: '3K',
+  //     uv: earTestData.F5L,
+  //     bone_uv: earTestData.bone_F5L
+  //   },
+  //   {
+  //     name: '5K',
+  //     uv: earTestData.F6L,
+  //     bone_uv: earTestData.bone_F6L
+  //   },
+  //   {
+  //     name: '8K',
+  //     uv: earTestData.F7L,
+  //     bone_uv: earTestData.bone_F7L
+  //   }
+  // ]
 
-  const dataBONERight = [
-    {
-      name: '250',
-      uv: earTestData.bone_F1R
-    },
-    {
-      name: '500',
-      uv: earTestData.bone_F2R
-    },
-    {
-      name: '1K',
-      uv: earTestData.bone_F3R
-    },
-    {
-      name: '2K',
-      uv: earTestData.bone_F4R
-    },
-    {
-      name: '3K',
-      uv: earTestData.bone_F5R
-    },
-    {
-      name: '5K',
-      uv: earTestData.bone_F6R
-    },
-    {
-      name: '8K',
-      uv: earTestData.bone_F7R
+  const dataRight = frequencyArr.map((value, index) => {
+
+    return {
+      name: getFrequencyName(value),
+      originalVal: value,
+      uv: earTestData['F' + value + 'R'],
+      bone_uv: earTestData['bone_F' + value + 'R']
     }
-  ]
+  }).sort(
+    function (a, b) {
+      const keyA = parseInt(a.originalVal)
+      const keyB = parseInt(b.originalVal)
+      // Compare the 2 dates
+      if (keyA < keyB) return -1;
+      if (keyA > keyB) return 1;
+      return 0;
+    }
+  )
+  const dataBONELeft = frequencyArr.map((value, index) => {
+
+    return {
+      name: getFrequencyName(value),
+      originalVal: value,
+
+      uv: earTestData['bone_F' + value + 'L']
+    }
+  }).sort(
+    function (a, b) {
+      const keyA = parseInt(a.originalVal)
+      const keyB = parseInt(b.originalVal)
+      // Compare the 2 dates
+      if (keyA < keyB) return -1;
+      if (keyA > keyB) return 1;
+      return 0;
+    }
+  )
+
+  const dataBONERight = frequencyArr.map((value, index) => {
+
+    return {
+      name: getFrequencyName(value),
+      originalVal: value,
+
+      uv: earTestData['bone_F' + value + 'R']
+    }
+  }).sort(
+    function (a, b) {
+      const keyA = parseInt(a.originalVal)
+      const keyB = parseInt(b.originalVal)
+      // Compare the 2 dates
+      if (keyA < keyB) return -1;
+      if (keyA > keyB) return 1;
+      return 0;
+    }
+  )
   return (
     <>
 
