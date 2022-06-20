@@ -16,6 +16,7 @@ import '../assets/css/spacing.css'
 import '../assets/css/theme.css'
 import '../assets/css/typography.css'
 import '../assets/css/page.css'
+import { rootUrl } from '../routes/RouteIndex';
 const Index = () => {
     const navigate = useNavigate()
     const link = useHref("")
@@ -113,7 +114,7 @@ const Index = () => {
                     </div>
 
                     <div className='m-v-secondary'>
-                        <NeonButton title={"TAKE THE TEST !"} onClick={() => { navigate( "/step/1") }} />
+                        <NeonButton title={"TAKE THE TEST !"} onClick={() => { navigate( rootUrl+ "/step/1") }} />
                     </div>
 
                 </div>
