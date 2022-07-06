@@ -20,7 +20,7 @@ const PdfCreate = () => {
             gender: personalDetails.gender,
             device: personalIntrest.device_selected == 'headphone' ? 1 : 0,
             usage: personalIntrest.selected_hours_of_use,
-            ...earTest
+            // ...earTest
             //   F1L: earTest.F1L,
             //   F1R: earTest.F1R,
             //   F2L: earTest.F2L,
@@ -59,9 +59,9 @@ const PdfCreate = () => {
         return await axios({
             url:
                 // 'https://lychee-crisp-08059.herokuapp.com/' +
-                'http://localhost:8000/' +
+                // 'http://localhost:8000/' +
 
-                // "https://crm-admin-wehear.herokuapp.com/" +
+                "https://crm-admin-wehear.herokuapp.com/" +
                 'api/hearing-test/add-row',
 
             method: 'post',
