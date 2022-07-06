@@ -16,7 +16,7 @@ const TestingMainController = () => {
         const pathArr = location.pathname.split("/")
         const stepNo = pathArr[pathArr.length - 1]
         if (stepNo !== 1) {
-            navigate(rootUrl + "/step/1")
+            // navigate(rootUrl + "/step/1")
             setLoading(false)
             return;
         }

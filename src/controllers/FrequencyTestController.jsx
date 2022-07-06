@@ -31,7 +31,7 @@ const FrequencyTestController = props => {
     dbValue: testData.defaultDb,
     level: 0,
     wrongCounts: 0,
-    panMode: device === 'headphone' ? -1 : 0
+    panMode: device === 'headphone' && mode!='bone' ? -1 : 0
   })
 
   const playTune = () => {
@@ -86,58 +86,17 @@ const FrequencyTestController = props => {
     }
   }
   const canHear = () => {
+
+
     const counts = { ...logicCounts }
     var value = counts.dbValue
 
-    var level = counts.level
 
-    const valueOfFrequency = {}
     if (value === -95 || logicCounts.wrongCounts > 0) {
-      let finishState = 0
-      if (logicCounts.panMode === -1) {
-        setLogicCounts({
-          ...logicCounts,
-          wrongCounts: 0,
-          dbValue: testData.defaultDb,
-          panMode: logicCounts.panMode * -1
-        })
-        mode == 'bone'
-          ? (valueOfFrequency['bone_F' + frequncyList[level] + 'L'] = value + 100)
-          : (valueOfFrequency['F' + frequncyList[level] + 'L'] = value + 100)
-      } else if (logicCounts.panMode === 1) {
-        setLogicCounts({
-          ...logicCounts,
-          level: counts.level + 1,
-          wrongCounts: 0,
-          dbValue: testData.defaultDb,
-          panMode: logicCounts.panMode * -1
-        })
-        mode == 'bone'
-          ? (valueOfFrequency['bone_F' + frequncyList[level] + 'R'] = value + 100)
-          : (valueOfFrequency['F' + frequncyList[level] + 'R'] = value + 100)
-        if (level === (frequncyList.length-1)) finishState = 1
-      }
-      if (logicCounts.panMode === 0) {
-        setLogicCounts({
-          ...logicCounts,
-          level: counts.level + 1,
-          wrongCounts: 0,
-          dbValue: testData.defaultDb,
-          panMode: logicCounts.panMode * -1
-        })
-        mode == 'bone'
-          ? (valueOfFrequency['bone_F' + frequncyList[level] + 'L'] = value + 100)
-          : (valueOfFrequency['F' + frequncyList[level] + 'L'] = value + 100)
-        mode == 'bone'
-          ? (valueOfFrequency['bone_F' + frequncyList[level] + 'R'] = value + 100)
-          : (valueOfFrequency['F' + frequncyList[level] + 'R'] = value + 100)
-        if (level === (frequncyList.length-1)) finishState = 1
-      }
-      dispatch(setFrequencyVal(valueOfFrequency))
-      if (finishState === 1) {
-        finishTest()
-      }
+      movetoNextFrequency()
+
     } else {
+
       setLogicCounts({
         ...logicCounts,
         dbValue: logicCounts.dbValue - DECRISING_COUNT
@@ -145,16 +104,72 @@ const FrequencyTestController = props => {
       // this.setState({ dbValue: value - 10, toogleState: 0 }, () => this.initialiseTest())
     }
   }
-
-  const cantHear = () => {
+  const movetoNextFrequency = () => {
     const counts = { ...logicCounts }
     var value = counts.dbValue
-    var wrongCountVal = counts.wrongCounts
-    setLogicCounts({
-      ...logicCounts,
-      wrongCounts: wrongCountVal + 1,
-      dbValue: logicCounts.dbValue + parseInt(DECRISING_COUNT / 2)
-    })
+    let finishState = 0
+    var level = counts.level
+    const valueOfFrequency = {}
+    if (logicCounts.panMode === -1) {
+      setLogicCounts({
+        ...logicCounts,
+        wrongCounts: 0,
+        dbValue: testData.defaultDb,
+        panMode: logicCounts.panMode * -1
+      })
+      mode == 'bone'
+        ? (valueOfFrequency['bone_F' + frequncyList[level] + 'L'] = value + 100)
+        : (valueOfFrequency['F' + frequncyList[level] + 'L'] = value + 100)
+    } else if (logicCounts.panMode === 1) {
+      setLogicCounts({
+        ...logicCounts,
+        level: counts.level + 1,
+        wrongCounts: 0,
+        dbValue: testData.defaultDb,
+        panMode: logicCounts.panMode * -1
+      })
+      mode == 'bone'
+        ? (valueOfFrequency['bone_F' + frequncyList[level] + 'R'] = value + 100)
+        : (valueOfFrequency['F' + frequncyList[level] + 'R'] = value + 100)
+      if (level === (frequncyList.length - 1)) finishState = 1
+    }
+    if (logicCounts.panMode === 0) {
+      setLogicCounts({
+        ...logicCounts,
+        level: counts.level + 1,
+        wrongCounts: 0,
+        dbValue: testData.defaultDb,
+        panMode: logicCounts.panMode * -1
+      })
+      mode == 'bone'
+        ? (valueOfFrequency['bone_F' + frequncyList[level] + 'L'] = value + 100)
+        : (valueOfFrequency['F' + frequncyList[level] + 'L'] = value + 100)
+      mode == 'bone'
+        ? (valueOfFrequency['bone_F' + frequncyList[level] + 'R'] = value + 100)
+        : (valueOfFrequency['F' + frequncyList[level] + 'R'] = value + 100)
+      if (level === (frequncyList.length - 1)) finishState = 1
+    }
+    dispatch(setFrequencyVal(valueOfFrequency))
+    if (finishState === 1) {
+      finishTest()
+    }
+  }
+  const cantHear = () => {
+
+    const counts = { ...logicCounts }
+    
+    
+    if (counts.dbValue >= 0) {
+      movetoNextFrequency()
+    } else {
+      var wrongCountVal = counts.wrongCounts
+      setLogicCounts({
+        ...logicCounts,
+        wrongCounts: wrongCountVal + 1,
+        dbValue: logicCounts.dbValue + parseInt(DECRISING_COUNT / 2)
+      })
+    }
+
   }
   useEffect(() => {
     playTune()

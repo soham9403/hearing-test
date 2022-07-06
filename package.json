@@ -2,7 +2,7 @@
   "name": "hearing-test-new",
   "version": "0.1.0",
   "private": true,  
-  "homepage": "http://wehear.in/testin/",
+  "homepage": "http://wehear.in/hearing-test/",
   "dependencies": {
     "-": "^0.0.1",
     "@emotion/react": "^11.7.1",

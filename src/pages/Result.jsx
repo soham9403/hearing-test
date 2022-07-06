@@ -389,56 +389,7 @@ const Result = (props) => {
     }
   }
 
-  const sendReqToaddRow = async () => {
-    const data = {
-      snr: earTestData.snr,
-      email: personalDetails.email,
-      name: personalDetails.name,
-      age: personalDetails.age,
-      gender: personalDetails.gender,
-      device: personalIntrest.device_selected == 'headphone' ? 1 : 0,
-      usage: personalIntrest.selected_hours_of_use,
-      F1L: earTestData.F1L,
-      F1R: earTestData.F1R,
-      F2L: earTestData.F2L,
-      F2R: earTestData.F2R,
-      F3L: earTestData.F3L,
-      F3R: earTestData.F3R,
-      F4L: earTestData.F4L,
-      F4R: earTestData.F4R,
-      F5L: earTestData.F5L,
-      F5R: earTestData.F5R,
-      F6L: earTestData.F6L,
-      F6R: earTestData.F6R,
-      F7L: earTestData.F7L,
-      F7R: earTestData.F7R,
-      bone_F1L: earTestData.bone_F1L,
-      bone_F1R: earTestData.bone_F1R,
-      bone_F2L: earTestData.bone_F2L,
-      bone_F2R: earTestData.bone_F2R,
-      bone_F3L: earTestData.bone_F3L,
-      bone_F3R: earTestData.bone_F3R,
-      bone_F4L: earTestData.bone_F4L,
-      bone_F4R: earTestData.bone_F4R,
-      bone_F5L: earTestData.bone_F5L,
-      bone_F5R: earTestData.bone_F5R,
-      bone_F6L: earTestData.bone_F6L,
-      bone_F6R: earTestData.bone_F6R,
-      bone_F7L: earTestData.bone_F7L,
-      bone_F7R: earTestData.bone_F7R
-    }
-
-    return await axios({
-      url:
-        // 'https://lychee-crisp-08059.herokuapp.com/' +
-        // 'http://localhost:8000/'+
-
-        "https://crm-admin-wehear.herokuapp.com/" +
-        'api/hearing-test/add-row',
-      method: 'post',
-      data: data
-    })
-  }
+  
   const getAverage = (data) => {
     let count = 0;
     let sum = 0;
@@ -762,6 +713,14 @@ const Result = (props) => {
               </div>
             </div>
             <div className="w-md-33 df column cenetr">
+
+            <button className="pl-2 mt-3 pr-2 pt-3 df center pb-3 bg-2-primary h5 radius-1 text-2-light pointer" onClick={()=>{props.printDocument({isSend:true})}}>
+                <svg xmlns="http://www.w3.org/2000/svg" className='download-svg' width="2.083vw" height="2.083vw" viewBox="0 0 24 24" fill="none">
+                  <path d="M18.75 3.75H16.5V3C16.5 2.60218 16.342 2.22064 16.0607 1.93934C15.7794 1.65804 15.3978 1.5 15 1.5H9C8.60218 1.5 8.22064 1.65804 7.93934 1.93934C7.65804 2.22064 7.5 2.60218 7.5 3V3.75H5.25C4.85218 3.75 4.47064 3.90804 4.18934 4.18934C3.90804 4.47064 3.75 4.85218 3.75 5.25V21C3.75 21.3978 3.90804 21.7794 4.18934 22.0607C4.47064 22.342 4.85218 22.5 5.25 22.5H18.75C19.1478 22.5 19.5294 22.342 19.8107 22.0607C20.092 21.7794 20.25 21.3978 20.25 21V5.25C20.25 4.85218 20.092 4.47064 19.8107 4.18934C19.5294 3.90804 19.1478 3.75 18.75 3.75V3.75ZM9 3H15V6H9V3ZM18.75 21H5.25V5.25H7.5V7.5H16.5V5.25H18.75V21Z" fill="#FEFEFE" />
+                  <path d="M9.03125 17.7812H14.6562M9.34375 13.7188L11.8438 15.9062M11.8438 15.9062L14.3438 13.7188M11.8438 15.9062V10.5938" stroke="#FEFEFE" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                &nbsp; &nbsp;{props.loading ? "Loading..." : 'Mail Report'}
+              </button>
               <button className="pl-2 mt-3 pr-2 pt-3 df center pb-3 bg-2-primary h5 radius-1 text-2-light pointer" onClick={props.printDocument}>
                 <svg xmlns="http://www.w3.org/2000/svg" className='download-svg' width="2.083vw" height="2.083vw" viewBox="0 0 24 24" fill="none">
                   <path d="M18.75 3.75H16.5V3C16.5 2.60218 16.342 2.22064 16.0607 1.93934C15.7794 1.65804 15.3978 1.5 15 1.5H9C8.60218 1.5 8.22064 1.65804 7.93934 1.93934C7.65804 2.22064 7.5 2.60218 7.5 3V3.75H5.25C4.85218 3.75 4.47064 3.90804 4.18934 4.18934C3.90804 4.47064 3.75 4.85218 3.75 5.25V21C3.75 21.3978 3.90804 21.7794 4.18934 22.0607C4.47064 22.342 4.85218 22.5 5.25 22.5H18.75C19.1478 22.5 19.5294 22.342 19.8107 22.0607C20.092 21.7794 20.25 21.3978 20.25 21V5.25C20.25 4.85218 20.092 4.47064 19.8107 4.18934C19.5294 3.90804 19.1478 3.75 18.75 3.75V3.75ZM9 3H15V6H9V3ZM18.75 21H5.25V5.25H7.5V7.5H16.5V5.25H18.75V21Z" fill="#FEFEFE" />
@@ -769,6 +728,8 @@ const Result = (props) => {
                 </svg>
                 &nbsp; &nbsp;{props.loading ? "Loading..." : 'Download Report'}
               </button>
+
+              
             </div>
           </div>
         </div>

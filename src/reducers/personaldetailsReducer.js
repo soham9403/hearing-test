@@ -1,6 +1,6 @@
 const initialState = {
     name: "",
-    email: "",
+    email: "sohampatel9403@gmail.com",
     age: "",
     gender: "Male"
 }
